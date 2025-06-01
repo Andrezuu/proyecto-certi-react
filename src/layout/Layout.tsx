@@ -1,24 +1,42 @@
-import { useState } from 'react';
-import { Box, CssBaseline } from '@mui/material';
-import NavBar from './NavBar';
-import Sidebar from './Sidebar';
-import { Outlet } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { Box, CssBaseline, useMediaQuery, useTheme } from "@mui/material";
+import { Outlet } from "react-router-dom";
+import Sidebar from "./Sidebar";
+import NavBar from "./NavBar";
 
-export default function Layout() {
-  const [open, setOpen] = useState(false);
+const Layout = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const handleDrawerOpen = () => setOpen(true);
-  const handleDrawerClose = () => setOpen(false);
+useEffect(() => {
+  if (!isMobile) {
+    setMobileOpen(true);
+  }
+}, [isMobile]);
+
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <NavBar onDrawerOpen={handleDrawerOpen} drawerOpen={open} />
-      <Sidebar open={open} onClose={handleDrawerClose} />
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Box sx={{ height: '64px' }} /> 
-        <Outlet />
+      <NavBar onMenuClick={handleDrawerToggle} />
+      <Sidebar
+        mobileOpen={mobileOpen}
+        handleDrawerToggle={handleDrawerToggle}
+        isMobile={isMobile}
+      />
+      <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ height: "64px" }} />
+        <Box component="main" sx={{ p: 3 }}>
+          <Outlet />
+        </Box>
       </Box>
     </Box>
   );
-}
+};
+
+export default Layout;

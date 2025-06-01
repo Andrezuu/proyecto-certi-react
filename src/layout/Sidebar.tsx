@@ -1,66 +1,85 @@
 import {
   Box,
-  Button,
   Divider,
   Drawer,
-  IconButton,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Button,
+  IconButton,
 } from "@mui/material";
 import {
+  Home as HomeIcon,
   Map as MapIcon,
   BarChart as ChartIcon,
-  Notifications as AlertIcon,
+  Notifications as NotificationsIcon,
   History as HistoryIcon,
   AdminPanelSettings as AdminIcon,
-  Home as DashboardIcon,
-  ChevronLeft,
+  Logout as LogoutIcon,
+  ChevronLeft as ChevronLeftIcon,
 } from "@mui/icons-material";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { clearStorage } from "../helpers/localStorage";
-
-interface SidebarProps {
-  open: boolean;
-  onClose: () => void;
-}
+import { useEffect } from "react";
 
 const drawerWidth = 240;
 
-const menuItems = [
-  { text: "Dashboard", path: "/app/dashboard", icon: <DashboardIcon /> },
-  { text: "Mapa", path: "/app/mapa", icon: <MapIcon /> },
-  { text: "Cotizaciones", path: "/app/cotizaciones", icon: <ChartIcon /> },
-  { text: "Alerta", path: "/app/alerta", icon: <AlertIcon /> },
-  { text: "Historial", path: "/app/historial", icon: <HistoryIcon /> },
-  { text: "Casas Admin", path: "/app/admin/casas", icon: <AdminIcon /> },
-];
+interface SidebarProps {
+  mobileOpen: boolean;
+  handleDrawerToggle: () => void;
+  isMobile: boolean;
+}
 
-export default function Sidebar({ open, onClose }: SidebarProps) {
+export default function Sidebar({
+  mobileOpen,
+  handleDrawerToggle,
+  isMobile,
+}: SidebarProps) {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const menuItems = [
+    { text: "Dashboard", path: "/app/dashboard", icon: <HomeIcon /> },
+    { text: "Mapa", path: "/app/mapa", icon: <MapIcon /> },
+    { text: "Cotizaciones", path: "/app/cotizaciones", icon: <ChartIcon /> },
+    { text: "Alerta", path: "/app/alerta", icon: <NotificationsIcon /> },
+    { text: "Historial", path: "/app/historial", icon: <HistoryIcon /> },
+    { text: "Casas Admin", path: "/app/admin/casas", icon: <AdminIcon /> },
+  ];
+
+  useEffect(() => {
+    if (isMobile && mobileOpen) {
+      handleDrawerToggle();
+    }
+    
+  }, [location.pathname]);
+
   return (
     <Drawer
+      variant={isMobile ? "temporary" : "persistent"}
+      open={mobileOpen}
+      onClose={handleDrawerToggle}
       sx={{
         width: drawerWidth,
         flexShrink: 0,
         '& .MuiDrawer-paper': {
           width: drawerWidth,
           boxSizing: 'border-box',
+          display: 'flex',
+          flexDirection: 'column',
         },
       }}
-      variant="persistent"
-      anchor="left"
-      open={open}
     >
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 1 }}>
-        <IconButton onClick={onClose}>
-          <ChevronLeft />
-        </IconButton>
-      </Box>
+      {isMobile && (
+        <Box display="flex" justifyContent="flex-end" p={1}>
+          <IconButton onClick={handleDrawerToggle}>
+            <ChevronLeftIcon />
+          </IconButton>
+        </Box>
+      )}
+
       <Divider />
       <List>
         {menuItems.map(({ text, path, icon }) => (
@@ -76,17 +95,15 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
         ))}
       </List>
 
-      {/* Empuja el botón hacia abajo */}
       <Box sx={{ flexGrow: 1 }} />
-
-      {/* Botón de Cerrar Sesión */}
       <Box sx={{ p: 2 }}>
         <Button
           variant="outlined"
           color="error"
           fullWidth
+          startIcon={<LogoutIcon />}
           onClick={() => {
-            clearStorage(); // limpia el storage
+            clearStorage();
             navigate("/login");
           }}
         >
