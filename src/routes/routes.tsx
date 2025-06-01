@@ -21,7 +21,7 @@ export const AppRoutes = () => {
           path="/app"
           element={
             <ProtectedRoutes>
-              <Layout children={undefined} />
+              <Layout/>
             </ProtectedRoutes>
           }
         >
