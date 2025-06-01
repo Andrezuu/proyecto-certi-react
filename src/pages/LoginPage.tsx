@@ -27,7 +27,7 @@ const loginSchema = yup.object({
 export default function LoginPage() {
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState(false);
-const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: loginSchema,
@@ -54,6 +54,13 @@ const [showPassword, setShowPassword] = useState(false);
       />
       <Box sx={{ marginTop: 8 }}>
         <CardContent sx={{ padding: 4, textAlign: "center", boxShadow: 3 }}>
+          <Box sx={{ mb: 2 }}>
+            <img
+              src="/logo.png" 
+              alt="Logo"
+              style={{ width: "80%", height: "auto" }}
+            />
+          </Box>
           <Typography variant="h5" gutterBottom>
             Iniciar Sesión
           </Typography>

@@ -32,7 +32,15 @@ export const AppRoutes = () => {
           <Route path="historial" element={<HistorialPage />} />
           <Route path="admin/casas" element={<CasasAdminPage />} />
         </Route>
-       
+       <Route
+          path="/"
+          element={
+            <ProtectedRoutes>
+              <Layout />
+            </ProtectedRoutes>
+          }
+        >
+          </Route>
       </Routes>
   );
 };
