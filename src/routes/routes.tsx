@@ -4,6 +4,13 @@ import DashboardPage from "../pages/DashboardPage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import ProtectedRoutes from "../guards/ProtectedRoutes";
+import Layout from "../layout/Layout";
+import MapaPage from "../pages/MapaPage";
+import CotizacionesPage from "../pages/CotizacionesPage";
+import AlertaPage from "../pages/AlertaPage";
+import HistorialPage from "../pages/HistorialPage";
+import CasasAdminPage from "../pages/CasasAdminPage";
+
 
 export const AppRoutes = () => {
   return (
@@ -15,11 +22,18 @@ export const AppRoutes = () => {
           path="/app"
           element={
             <ProtectedRoutes>
-              <DashboardPage />
+              <Layout children={undefined}>
+              
+              </Layout>
             </ProtectedRoutes>
           }
         >
           <Route path="dashboard" element={<DashboardPage />} />
+          <Route path="mapa" element={<MapaPage />} />
+          <Route path="cotizaciones" element={<CotizacionesPage />} />
+          <Route path="alerta" element={<AlertaPage />} />
+          <Route path="historial" element={<HistorialPage />} />
+          <Route path="admin/casas" element={<CasasAdminPage />} />
         </Route>
         <Route
           path="/"
