@@ -1,17 +1,9 @@
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvent } from "react-leaflet";
 import { useEffect, useState } from "react";
 import L from "leaflet";
 import { getExchangeHouses } from "../services/exchangeHouseService";
+import type { IExchangeHouse } from "../models/exchangeHouseModel";
 
-interface ExchangeHouse {
-  id: number;
-  name: string;
-  address: string;
-  lat: number;
-  lng: number;
-  buy: number;
-  sell: number;
-}
 
 const defaultIcon = new L.Icon({
   iconUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png",
@@ -26,7 +18,9 @@ const selectedIcon = new L.Icon({
 });
 
 interface ExchangeMapProps {
-  selectedHouse?: ExchangeHouse | null;
+  selectedHouse?: IExchangeHouse | null;
+  selectedLatLng?: { lat: number; lng: number } | null;
+  onLatLngChange?: (lat: number, lng: number) => void;
 }
 
 const CenterMap = ({ lat, lng }: { lat: number; lng: number }) => {
@@ -37,8 +31,16 @@ const CenterMap = ({ lat, lng }: { lat: number; lng: number }) => {
   return null;
 };
 
-const ExchangeMap = ({ selectedHouse }: ExchangeMapProps) => {
-  const [houses, setHouses] = useState<ExchangeHouse[]>([]);
+const ClickHandler = ({ onClick }: { onClick: (lat: number, lng: number) => void }) => {
+  useMapEvent("click", (e) => {
+    onClick(e.latlng.lat, e.latlng.lng);
+  });
+  return null;
+};
+
+const ExchangeMap = ({ selectedHouse, selectedLatLng, onLatLngChange }: ExchangeMapProps) => {
+  const [houses, setHouses] = useState<IExchangeHouse[]>([]);
+  console.log("ExchangeMap selectLatLng:", selectedLatLng);
 
   useEffect(() => {
     getExchangeHouses()
@@ -48,8 +50,8 @@ const ExchangeMap = ({ selectedHouse }: ExchangeMapProps) => {
 
   return (
     <MapContainer
-      center={[-16.5, -68.15]}
-      zoom={6}
+      center={selectedLatLng || [-16.5, -68.15]}
+      zoom={selectedLatLng ? 15 : 6}
       scrollWheelZoom={true}
       style={{ height: "100%", width: "100%" }}
     >
@@ -59,6 +61,9 @@ const ExchangeMap = ({ selectedHouse }: ExchangeMapProps) => {
       />
 
       {selectedHouse && <CenterMap lat={selectedHouse.lat} lng={selectedHouse.lng} />}
+      {selectedLatLng && <CenterMap lat={selectedLatLng.lat} lng={selectedLatLng.lng} />}
+
+      {onLatLngChange && <ClickHandler onClick={onLatLngChange} />}
 
       {houses.map((house) => (
         <Marker
@@ -77,6 +82,12 @@ const ExchangeMap = ({ selectedHouse }: ExchangeMapProps) => {
           </Popup>
         </Marker>
       ))}
+
+      {selectedLatLng && !selectedHouse && (
+        <Marker position={[selectedLatLng.lat, selectedLatLng.lng]} icon={selectedIcon}>
+          <Popup>Ubicación seleccionada</Popup>
+        </Marker>
+      )}
     </MapContainer>
   );
 };

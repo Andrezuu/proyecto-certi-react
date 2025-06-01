@@ -72,6 +72,7 @@ export default function Sidebar({
         },
       }}
     >
+      {!isMobile && <Toolbar />}
       {isMobile && (
         <Box display="flex" justifyContent="flex-end" p={1}>
           <IconButton onClick={handleDrawerToggle}>
@@ -80,7 +81,6 @@ export default function Sidebar({
         </Box>
       )}
 
-      <Toolbar />
       <List>
         {menuItems.map(({ text, path, icon }) => (
           <ListItem key={text} disablePadding>

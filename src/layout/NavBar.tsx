@@ -12,7 +12,7 @@ export default function NavBar({ onMenuClick }: NavBarProps) {
   return (
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
       <Toolbar>
-        {true && (
+        {isMobile && (
           <IconButton color="inherit" edge="start" onClick={onMenuClick} sx={{ mr: 2 }}>
             <MenuIcon />
           </IconButton>

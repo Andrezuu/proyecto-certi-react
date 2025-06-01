@@ -8,8 +8,8 @@ import MapaPage from "../pages/MapaPage";
 import CotizacionesPage from "../pages/CotizacionesPage";
 import AlertaPage from "../pages/AlertaPage";
 import HistorialPage from "../pages/HistorialPage";
-import CasasAdminPage from "../pages/CasasAdminPage";
 import Layout from "../layout/Layout";
+import CasasAdminPage from "../pages/CasasAdminPage";
 
 
 export const AppRoutes = () => {
