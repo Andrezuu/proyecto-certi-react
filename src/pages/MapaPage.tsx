@@ -5,7 +5,7 @@ import jsonServerInstance from "../api/jsonInstance";
 
 const MapaPage = () => {
   const [exchangeHouses, setExchangeHouses] = useState([]);
-  const [selectedHouse, setSelectedHouse] = useState(null); // NUEVO
+  const [selectedHouse, setSelectedHouse] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,21 +22,22 @@ const MapaPage = () => {
         Mapa de Casas de Cambio
       </Typography>
 
-      <Grid container spacing={2} sx={{ justifyContent: "center" }}>
+      <Grid container spacing={2}>
+        {/* Lista de casas */}
         <Grid
-          size={5}
+          size={{ xs: 12, md: 5 }}
           sx={{
-            height: "500px", // igual que el alto del mapa
+            maxHeight: { xs: "300px", md: "600px" },
             overflowY: "auto",
-            pr: 1, // padding right para que no quede muy pegado al mapa
+            pr: { md: 1 },
           }}
         >
           <Grid container spacing={2}>
             {exchangeHouses.map((house) => (
-              <Grid key={house.id} size={12}>
+              <Grid size={12} key={house.id}>
                 <Card
                   variant="outlined"
-                  onClick={() => setSelectedHouse(house)} // SELECCIONAR CASA
+                  onClick={() => setSelectedHouse(house)}
                   sx={{
                     cursor: "pointer",
                     borderColor:
@@ -65,8 +66,15 @@ const MapaPage = () => {
           </Grid>
         </Grid>
 
-        <Grid size={6}>
-          <div style={{ height: "600px", width: "100%" }}>
+        {/* Mapa */}
+        <Grid size={{ xs: 12, md: 7 }}>
+          <div
+            style={{
+              height: "600px",
+              width: "100%",
+              marginTop: window.innerWidth < 900 ? "1rem" : 0, // soporte JS inline
+            }}
+          >
             <ExchangeMap selectedHouse={selectedHouse} />
           </div>
         </Grid>
