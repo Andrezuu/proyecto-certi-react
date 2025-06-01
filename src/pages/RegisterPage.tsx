@@ -72,8 +72,15 @@ export default function RegisterPage() {
         severity="error"
         onClose={() => setRegisterError(false)}
       />
-      <Box sx={{ marginTop: 8 }}>
+      <Box sx={{ }}>
         <CardContent sx={{ padding: 4, textAlign: "center", boxShadow: 3 }}>
+          <Box sx={{ mb: 2 }}>
+            <img
+              src="/logo.png" 
+              alt="Logo"
+              style={{ width: "80%", height: "auto" }}
+            />
+          </Box>
           <Typography variant="h5" gutterBottom>
             Registro de Usuario
           </Typography>
