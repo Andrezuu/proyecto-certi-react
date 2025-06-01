@@ -24,13 +24,13 @@ const MapaPage = () => {
 
       <Grid container spacing={2} sx={{ justifyContent: "center" }}>
         <Grid
-  size={4}
-  sx={{
-    height: "600px", // igual que el alto del mapa
-    overflowY: "auto",
-    pr: 1, // padding right para que no quede muy pegado al mapa
-  }}
->
+          size={5}
+          sx={{
+            height: "500px", // igual que el alto del mapa
+            overflowY: "auto",
+            pr: 1, // padding right para que no quede muy pegado al mapa
+          }}
+        >
           <Grid container spacing={2}>
             {exchangeHouses.map((house) => (
               <Grid key={house.id} size={12}>
@@ -40,7 +40,9 @@ const MapaPage = () => {
                   sx={{
                     cursor: "pointer",
                     borderColor:
-                      selectedHouse?.id === house.id ? "primary.main" : "grey.300",
+                      selectedHouse?.id === house.id
+                        ? "primary.main"
+                        : "grey.300",
                     backgroundColor:
                       selectedHouse?.id === house.id ? "lightblue" : "white",
                   }}
