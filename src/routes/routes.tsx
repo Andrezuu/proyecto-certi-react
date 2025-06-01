@@ -4,17 +4,16 @@ import DashboardPage from "../pages/DashboardPage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import ProtectedRoutes from "../guards/ProtectedRoutes";
-import Layout from "../layout/Layout";
 import MapaPage from "../pages/MapaPage";
 import CotizacionesPage from "../pages/CotizacionesPage";
 import AlertaPage from "../pages/AlertaPage";
 import HistorialPage from "../pages/HistorialPage";
 import CasasAdminPage from "../pages/CasasAdminPage";
+import Layout from "../layout/Layout";
 
 
 export const AppRoutes = () => {
   return (
-    <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
@@ -22,9 +21,7 @@ export const AppRoutes = () => {
           path="/app"
           element={
             <ProtectedRoutes>
-              <Layout children={undefined}>
-              
-              </Layout>
+              <Layout children={undefined} />
             </ProtectedRoutes>
           }
         >
@@ -35,16 +32,7 @@ export const AppRoutes = () => {
           <Route path="historial" element={<HistorialPage />} />
           <Route path="admin/casas" element={<CasasAdminPage />} />
         </Route>
-        <Route
-          path="/"
-          element={
-            <ProtectedRoutes>
-              <DashboardPage />
-            </ProtectedRoutes>
-          }
-        >
-          </Route>
+       
       </Routes>
-    </BrowserRouter>
   );
 };
