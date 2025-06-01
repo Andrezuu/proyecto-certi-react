@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Divider,
   Drawer,
   IconButton,
@@ -19,6 +20,7 @@ import {
   ChevronLeft,
 } from "@mui/icons-material";
 import { useLocation, useNavigate } from "react-router-dom";
+import { clearStorage } from "../helpers/localStorage";
 
 interface SidebarProps {
   open: boolean;
@@ -73,6 +75,24 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
           </ListItem>
         ))}
       </List>
+
+      {/* Empuja el botón hacia abajo */}
+      <Box sx={{ flexGrow: 1 }} />
+
+      {/* Botón de Cerrar Sesión */}
+      <Box sx={{ p: 2 }}>
+        <Button
+          variant="outlined"
+          color="error"
+          fullWidth
+          onClick={() => {
+            clearStorage(); // limpia el storage
+            navigate("/login");
+          }}
+        >
+          Cerrar sesión
+        </Button>
+      </Box>
     </Drawer>
   );
 }
