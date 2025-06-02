@@ -7,7 +7,7 @@
       "name": "Admin",
       "lastName": "User",
       "token": "abc123",
-      "alertThreshold": 6,
+      "alertThreshold": 8,
       "alertEnabled": true
     },
     {

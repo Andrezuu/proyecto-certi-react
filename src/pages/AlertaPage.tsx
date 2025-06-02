@@ -20,7 +20,6 @@ import {
   simulateAlertCheck,
 } from "../services/AlertsService";
 
-// Simulamos un usuario autenticado
 const CURRENT_USER_ID = 1;
 
 const AlertSettings = () => {
@@ -34,7 +33,6 @@ const AlertSettings = () => {
   } | null>(null);
   const [loading, setLoading] = useState(false);
 
-  // Formik para manejar el formulario
   const formik = useFormik({
     initialValues: {
       threshold: 7.0,
@@ -48,13 +46,11 @@ const AlertSettings = () => {
     onSubmit: async (values) => {
       setLoading(true);
       try {
-        // Actualizar configuraciones de alerta
         await updateUserAlertSettings(
           CURRENT_USER_ID,
           values.threshold,
           values.enabled
         );
-        // Verificar alerta después de actualizar
         const alertResult = await checkAlert(CURRENT_USER_ID);
         setAlertStatus(alertResult);
       } catch (error) {
@@ -73,7 +69,6 @@ const AlertSettings = () => {
     },
   });
 
-  // Verificar alerta y cargar configuraciones al iniciar
   useEffect(() => {
     const fetchAlertStatus = async () => {
       setLoading(true);
@@ -100,7 +95,6 @@ const AlertSettings = () => {
     fetchAlertStatus();
   }, []);
 
-  // Función para simular un cambio en el tipo de cambio
   const handleSimulateChange = async () => {
     setLoading(true);
     try {

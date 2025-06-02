@@ -18,12 +18,10 @@ const MapaPage = () => {
 
   return (
     <div style={{ padding: "1rem" }}>
-      <Typography variant="h4" gutterBottom>
-        Mapa de Casas de Cambio
+     <Typography variant="h4" gutterBottom>
       </Typography>
 
       <Grid container spacing={2}>
-        {/* Lista de casas */}
         <Grid
           size={{ xs: 12, md: 5 }}
           sx={{
@@ -72,7 +70,7 @@ const MapaPage = () => {
             style={{
               height: "600px",
               width: "100%",
-              marginTop: window.innerWidth < 900 ? "1rem" : 0, // soporte JS inline
+              marginTop: window.innerWidth < 900 ? "1rem" : 0, 
             }}
           >
             <ExchangeMap selectedHouse={selectedHouse} />

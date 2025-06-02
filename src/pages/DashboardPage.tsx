@@ -15,7 +15,7 @@ export default function DashboardPage() {
   return (
     <Box sx={{ padding: 4 }}>
       <Typography variant="h4" gutterBottom>
-        Bienvenido al Dashboard
+        Dashboard
       </Typography>
       <Graphs/>
     </Box>

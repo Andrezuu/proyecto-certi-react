@@ -31,7 +31,7 @@ const ExchangeRateChart: React.FC<ExchangeRateChartProps> = ({
         <LineChart data={rates}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" />
-          <YAxis domain={[minY, maxY]} /> {/* Escala dinámica */}
+          <YAxis domain={[minY, maxY]} /> 
           <Tooltip />
           <Line type="monotone" dataKey="buy" stroke="#8884d8" name="Compra" />
           <Line type="monotone" dataKey="sell" stroke="#82ca9d" name="Venta" />

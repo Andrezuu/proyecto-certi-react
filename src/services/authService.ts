@@ -19,7 +19,7 @@ export const register = async (
   lastName: string
 ) => {
   try {
-    const token = generateToken(); // sin uuid
+    const token = generateToken();
 
     const newUser = {
       email,

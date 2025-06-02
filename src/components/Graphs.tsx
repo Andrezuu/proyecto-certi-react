@@ -18,7 +18,6 @@ import {
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 
-// Registrar los componentes necesarios de Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const ExchangeComparison = () => {
@@ -48,7 +47,6 @@ const ExchangeComparison = () => {
           })
         );
 
-        // Preparar datos para el gráfico
         const chartLabels = results.map((row) => row.currency);
         const officialBuyData = results.map((row) => (row.officialBuy !== '-' ? row.officialBuy : null));
         const officialSellData = results.map((row) => (row.officialSell !== '-' ? row.officialSell : null));
