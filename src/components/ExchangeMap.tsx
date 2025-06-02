@@ -2,7 +2,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvent } from "rea
 import { useEffect, useState } from "react";
 import L from "leaflet";
 import { getExchangeHouses } from "../services/exchangeHouseService";
-import type { IExchangeHouse } from "../models/exchangeHouseModel";
+import type { IExchangeHouse } from "../models/IExchangeHouse";
 
 
 const defaultIcon = new L.Icon({

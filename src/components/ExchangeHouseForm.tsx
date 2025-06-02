@@ -10,7 +10,7 @@ import {
 import { useFormik } from "formik";
 import * as yup from "yup";
 import ExchangeMap from "./ExchangeMap";
-import type { IExchangeHouse } from "../models/exchangeHouseModel";
+import type { IExchangeHouse } from "../models/IExchangeHouse";
 import { useEffect } from "react";
 
 const exchangeHouseSchema = yup.object({

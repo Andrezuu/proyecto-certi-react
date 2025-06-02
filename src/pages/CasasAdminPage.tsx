@@ -6,7 +6,7 @@ import {
   getExchangeHouses,
   updateExchangeHouse,
 } from "../services/exchangeHouseService";
-import type { IExchangeHouse } from "../models/exchangeHouseModel";
+import type { IExchangeHouse } from "../models/IExchangeHouse";
 import ExchangeHouseForm from "../components/ExchangeHouseForm";
 import ExchangeHouseTable from "../components/ExchangeHouseTable";
 
@@ -66,7 +66,9 @@ const AdminPage = () => {
 
   return (
     <Box>
-      <Typography variant="h3">Administrar Casas de Cambio</Typography>
+      <Typography variant="h4" >
+        Administrar Casas de Cambio
+      </Typography>
       <Button
         variant="contained"
         sx={{ marginY: 2 }}

@@ -1,6 +1,6 @@
 // src/services/exchangeHouseService.ts
 import jsonServerInstance from "../api/jsonInstance";
-import type { IExchangeHouse } from "../models/exchangeHouseModel";
+import type { IExchangeHouse } from "../models/IExchangeHouse";
 
 export const getExchangeHouses = async () => {
   try {
