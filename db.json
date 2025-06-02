@@ -1,31 +1,35 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "email": "admin@example.com",
       "password": "admin123",
       "name": "Admin",
       "lastName": "User",
       "token": "abc123",
       "alertThreshold": 7
+      "alertThreshold": 7,
+      "alertEnabled": false
     },
     {
-      "id": 2,
+      "id": "2",
       "email": "user@example.com",
       "password": "user123",
       "name": "Normal",
       "lastName": "User",
       "token": "def456",
-      "alertThreshold": 7.2
+      "alertThreshold": 7.2,
+      "alertEnabled": false
     },
     {
-      "id": 3,
+      "id": "3",
       "email": "sudo@gmail.com",
       "password": "StringPassword12",
       "name": "Admin2",
       "lastName": "User2",
       "token": "abc123",
-      "alertThreshold": 7.5
+      "alertThreshold": 7.5,
+      "alertEnabled": false
     }
   ],
   "exchangeHouses": [
