@@ -1,6 +1,5 @@
 import {
   Box,
-  Divider,
   Drawer,
   List,
   ListItem,
@@ -9,6 +8,7 @@ import {
   ListItemText,
   Button,
   IconButton,
+  Toolbar,
 } from "@mui/material";
 import {
   Home as HomeIcon,
@@ -53,7 +53,7 @@ export default function Sidebar({
     if (isMobile && mobileOpen) {
       handleDrawerToggle();
     }
-    
+
   }, [location.pathname]);
 
   return (
@@ -80,7 +80,7 @@ export default function Sidebar({
         </Box>
       )}
 
-      <Divider />
+      <Toolbar />
       <List>
         {menuItems.map(({ text, path, icon }) => (
           <ListItem key={text} disablePadding>
