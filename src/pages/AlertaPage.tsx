@@ -11,6 +11,8 @@ import {
   Switch,
   FormControlLabel,
 } from "@mui/material";
+import WarningIcon from "@mui/icons-material/Warning";
+import InfoIcon from "@mui/icons-material/Info";
 import {
   updateUserAlertSettings,
   checkAlert,
@@ -18,8 +20,8 @@ import {
   simulateAlertCheck,
 } from "../services/AlertsService";
 
-// Simulamos un usuario autenticado (reemplaza con tu sistema de autenticación)
-const CURRENT_USER_ID = 1; // Cambia esto según tu lógica de autenticación
+// Simulamos un usuario autenticado
+const CURRENT_USER_ID = 1;
 
 const AlertSettings = () => {
   const [alertStatus, setAlertStatus] = useState<{
@@ -46,11 +48,13 @@ const AlertSettings = () => {
     onSubmit: async (values) => {
       setLoading(true);
       try {
+        // Actualizar configuraciones de alerta
         await updateUserAlertSettings(
           CURRENT_USER_ID,
           values.threshold,
           values.enabled
         );
+        // Verificar alerta después de actualizar
         const alertResult = await checkAlert(CURRENT_USER_ID);
         setAlertStatus(alertResult);
       } catch (error) {
@@ -116,78 +120,81 @@ const AlertSettings = () => {
   if (loading) return <CircularProgress />;
 
   return (
-    <>
-      <h1> Alertas </h1>
-      <Box sx={{ maxWidth: 400, mx: "auto", mt: 4, p: 2 }}>
-        <Typography variant="h6" gutterBottom>
-          Configurar Alerta de Tipo de Cambio (USD)
-        </Typography>
-        <form onSubmit={formik.handleSubmit}>
-          <TextField
-            fullWidth
-            id="threshold"
-            name="threshold"
-            label="Umbral de Alerta (USD)"
-            type="number"
-            value={formik.values.threshold}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={formik.touched.threshold && Boolean(formik.errors.threshold)}
-            helperText={formik.touched.threshold && formik.errors.threshold}
-            sx={{ mb: 2 }}
-            inputProps={{ step: "0.01" }}
-            disabled={!formik.values.enabled}
-          />
-          <FormControlLabel
-            control={
-              <Switch
-                checked={formik.values.enabled}
-                onChange={(e) =>
-                  formik.setFieldValue("enabled", e.target.checked)
-                }
-                name="enabled"
-              />
-            }
-            label={
-              formik.values.enabled ? "Alerta Activada" : "Alerta Desactivada"
-            }
-            sx={{ mb: 2 }}
-          />
-          <Box sx={{ display: "flex", gap: 2 }}>
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              disabled={loading}
-            >
-              Guardar Configuración
-            </Button>
-            <Button
-              variant="outlined"
-              color="secondary"
-              onClick={handleSimulateChange}
-              disabled={loading || !formik.values.enabled}
-            >
-              Simular Cambio
-            </Button>
-          </Box>
-        </form>
-
-        {alertStatus && (
-          <Box sx={{ mt: 3 }}>
-            <Alert
-              severity={
-                alertStatus.triggered && alertStatus.enabled
-                  ? "warning"
-                  : "info"
+    <Box sx={{ maxWidth: 400, mx: "auto", mt: 4, p: 2 }}>
+      <Typography variant="h6" gutterBottom>
+        Configurar Alerta de Tipo de Cambio (USD)
+      </Typography>
+      <form onSubmit={formik.handleSubmit}>
+        <TextField
+          fullWidth
+          id="threshold"
+          name="threshold"
+          label="Umbral de Alerta (USD)"
+          type="number"
+          value={formik.values.threshold}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.threshold && Boolean(formik.errors.threshold)}
+          helperText={formik.touched.threshold && formik.errors.threshold}
+          sx={{ mb: 2 }}
+          inputProps={{ step: "0.01" }}
+          disabled={!formik.values.enabled}
+        />
+        <FormControlLabel
+          control={
+            <Switch
+              checked={formik.values.enabled}
+              onChange={(e) =>
+                formik.setFieldValue("enabled", e.target.checked)
               }
-            >
-              {alertStatus.message}
-            </Alert>
-          </Box>
-        )}
-      </Box>
-    </>
+              name="enabled"
+            />
+          }
+          label={
+            formik.values.enabled ? "Alerta Activada" : "Alerta Desactivada"
+          }
+          sx={{ mb: 2 }}
+        />
+        <Box sx={{ display: "flex", gap: 2 }}>
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            disabled={loading}
+          >
+            Guardar Configuración
+          </Button>
+          <Button
+            variant="outlined"
+            color="secondary"
+            type="button"
+            onClick={handleSimulateChange}
+            disabled={loading || !formik.values.enabled}
+          >
+            Simular Cambio
+          </Button>
+        </Box>
+      </form>
+
+      {alertStatus && (
+        <Box sx={{ mt: 3 }}>
+          <Alert
+            icon={
+              alertStatus.triggered && alertStatus.enabled ? (
+                <WarningIcon fontSize="inherit" />
+              ) : (
+                <InfoIcon fontSize="inherit" />
+              )
+            }
+            severity={
+              alertStatus.triggered && alertStatus.enabled ? "warning" : "info"
+            }
+          >
+            {alertStatus.message}
+          </Alert>
+        </Box>
+      )}
+    </Box>
   );
 };
 
