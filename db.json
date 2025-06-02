@@ -1,250 +1,248 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "email": "admin@example.com",
       "password": "admin123",
       "name": "Admin",
       "lastName": "User",
       "token": "abc123",
-      "alertThreshold": 7.0
+      "alertThreshold": 7,
+      "alertEnabled": false
     },
     {
-      "id": 2,
+      "id": "2",
       "email": "user@example.com",
       "password": "user123",
       "name": "Normal",
       "lastName": "User",
       "token": "def456",
-      "alertThreshold": 7.2
+      "alertThreshold": 7.2,
+      "alertEnabled": false
     },
     {
-      "id": 3,
+      "id": "3",
       "email": "sudo@gmail.com",
       "password": "StringPassword12",
       "name": "Admin2",
       "lastName": "User2",
       "token": "abc123",
-      "alertThreshold": 7.5
+      "alertThreshold": 7.5,
+      "alertEnabled": false
     }
   ],
- "exchangeHouses": [
-  {
-    "id": 1,
-    "name": "INTERNATIONAL MONEY EXCHANGE SRL",
-    "address": "Edificio Monrroy y Velez, Calle 21 de Calacoto 8350, La Paz",
-    "lat":-16.542544652364764, 
-    "lng":-68.07743199174313,
-    "currency": "USD",
-    "buy": 6.80,
-    "sell": 6.95
-  },
-  {
-    "id": 2,
-    "name": "CASA DE CAMBIO SEVILLA",
-    "address": "Calle Bolivar entre 24 de Septiembre y Calle Beni, Shopping Bolivar, Local #8, Santa Cruz de la Sierra",
-    "lat": -17.777298383238016, 
-    "lng": -63.17904743639257,
-    "currency": "USD",
-    "buy": 6.78,
-    "sell": 6.92
-  },
-  {
-    "id": 3,
-    "name": "Casa de cambios Armella",
-    "address": "Bolivar 256, Tarija",
-    "lat": -21.532101005998115,
-    "lng":  -64.7328731217125,
-    "currency": "EUR",
-    "buy": 7.45,
-    "sell": 7.60
-  },
-  {
-    "id": 4,
-    "name": "Casa de cambio MAMÁ CHELA",
-    "address": "Nueva Terminal de Ómnibuses de Oruro-Este, C. Campo Jordán, Oruro",
-    "lat": -17.950289098116436, 
-    "lng": -67.09539870328555,
-    "currency": "USD",
-    "buy": 6.79,
-    "sell": 6.94
-  },
-  {
-    "id": 5,
-    "name": "MoneyGram - Av Arce",
-    "address": "CONDOMINIO TO, PLAZA ISABEL, Av. Arce 2519, La Paz",
-    "lat": -16.506659066238573,
-    "lng":  -68.12312897400949,
-    "currency": "EUR",
-    "buy": 7.44,
-    "sell": 7.58
-  },
-  {
-    "id": 6,
-    "name": "Casa de Cambio EFI",
-    "address": "Avenida Virgen de Cotoca, Tercer Anillo Externo y, Santa Cruz de la Sierra",
-    "lat": -17.779103105820745, 
-    "lng": -63.152066429054415,
-    "currency": "USD",
-    "buy": 6.77,
-    "sell": 6.91
-  },
-  {
-    "id": 7,
-    "name": "Unitransfer SRL",
-    "address": "Heroinas esq, España, Cochabamba",
-    "lat": -17.39142600947302,
-    "lng":  -66.15595992128148,
-    "currency": "USD",
-    "buy": 6.81,
-    "sell": 6.96
-  },
-  {
-    "id": 8,
-    "name": "LATIN AMERICA CAMBIOS/EXCHANGE",
-    "address": "C. Avaroa, Tupiza",
-    "lat": -21.443236896167424, 
-    "lng": -65.7193239954301,
-    "currency": "USD",
-    "buy": 6.76,
-    "sell": 6.90
-  },
-  {
-    "id": 9,
-    "name": "COOPERATIVA EL BUEN SAMARITANO LTDA.",
-    "address": "PASAJE BOULEVARD S/N, ENTRE CALLE HOYOS Y LINARES, Padilla S/N, Potosí",
-    "lat": -19.58789060065141,
-    "lng":  -65.75278638196373,
-    "currency": "EUR",
-    "buy": 7.42,
-    "sell": 7.57
-  },
-  {
-    "id": 10,
-    "name": "Cooperativa de ahorro y crédito abierta Trinidad CACTRI R.L.",
-    "address": "Calle Cochabamba esq. Manuel Limpias Nº 100, Calle Cochabamba, Trinidad",
-    "lat": -14.834374886108538, 
-    "lng": -64.90183966787761,
-    "currency": "USD",
-    "buy": 6.79,
-    "sell": 6.93
-  }
-]
-,
- "officialExchangeRate": [
-  {
-    "id": 1,
-    "date": "2025-05-30",
-    "currency": "USD",
-    "buy": 6.86,
-    "sell": 6.96
-  },
-  {
-    "id": 2,
-    "date": "2025-05-30",
-    "currency": "EUR",
-    "buy": 7.40,
-    "sell": 7.55
-  },
-  {
-    "id": 3,
-    "date": "2025-05-31",
-    "currency": "USD",
-    "buy": 6.87,
-    "sell": 6.97
-  },
-  {
-    "id": 4,
-    "date": "2025-05-31",
-    "currency": "EUR",
-    "buy": 7.41,
-    "sell": 7.56
-  }
-]
-
-,
+  "exchangeHouses": [
+    {
+      "id": "1",
+      "name": "INTERNATIONAL MONEY EXCHANGE SRL",
+      "address": "Edificio Monrroy y Velez, Calle 21 de Calacoto 8350, La Paz",
+      "lat": -16.542544652364764,
+      "lng": -68.07743199174313,
+      "currency": "USD",
+      "buy": 6.8,
+      "sell": 6.95
+    },
+    {
+      "id": "2",
+      "name": "CASA DE CAMBIO SEVILLA",
+      "address": "Calle Bolivar entre 24 de Septiembre y Calle Beni, Shopping Bolivar, Local #8, Santa Cruz de la Sierra",
+      "lat": -17.777298383238016,
+      "lng": -63.17904743639257,
+      "currency": "USD",
+      "buy": 6.78,
+      "sell": 6.92
+    },
+    {
+      "id": "3",
+      "name": "Casa de cambios Armella",
+      "address": "Bolivar 256, Tarija",
+      "lat": -21.532101005998115,
+      "lng": -64.7328731217125,
+      "currency": "EUR",
+      "buy": 7.45,
+      "sell": 7.6
+    },
+    {
+      "id": "4",
+      "name": "Casa de cambio MAMÁ CHELA",
+      "address": "Nueva Terminal de Ómnibuses de Oruro-Este, C. Campo Jordán, Oruro",
+      "lat": -17.950289098116436,
+      "lng": -67.09539870328555,
+      "currency": "USD",
+      "buy": 6.79,
+      "sell": 6.94
+    },
+    {
+      "id": "5",
+      "name": "MoneyGram - Av Arce",
+      "address": "CONDOMINIO TO, PLAZA ISABEL, Av. Arce 2519, La Paz",
+      "lat": -16.506659066238573,
+      "lng": -68.12312897400949,
+      "currency": "EUR",
+      "buy": 7.44,
+      "sell": 7.58
+    },
+    {
+      "id": "6",
+      "name": "Casa de Cambio EFI",
+      "address": "Avenida Virgen de Cotoca, Tercer Anillo Externo y, Santa Cruz de la Sierra",
+      "lat": -17.779103105820745,
+      "lng": -63.152066429054415,
+      "currency": "USD",
+      "buy": 6.77,
+      "sell": 6.91
+    },
+    {
+      "id": "7",
+      "name": "Unitransfer SRL",
+      "address": "Heroinas esq, España, Cochabamba",
+      "lat": -17.39142600947302,
+      "lng": -66.15595992128148,
+      "currency": "USD",
+      "buy": 6.81,
+      "sell": 6.96
+    },
+    {
+      "id": "8",
+      "name": "LATIN AMERICA CAMBIOS/EXCHANGE",
+      "address": "C. Avaroa, Tupiza",
+      "lat": -21.443236896167424,
+      "lng": -65.7193239954301,
+      "currency": "USD",
+      "buy": 6.76,
+      "sell": 6.9
+    },
+    {
+      "id": "9",
+      "name": "COOPERATIVA EL BUEN SAMARITANO LTDA.",
+      "address": "PASAJE BOULEVARD S/N, ENTRE CALLE HOYOS Y LINARES, Padilla S/N, Potosí",
+      "lat": -19.58789060065141,
+      "lng": -65.75278638196373,
+      "currency": "EUR",
+      "buy": 7.42,
+      "sell": 7.57
+    },
+    {
+      "id": "10",
+      "name": "Cooperativa de ahorro y crédito abierta Trinidad CACTRI R.L.",
+      "address": "Calle Cochabamba esq. Manuel Limpias Nº 100, Calle Cochabamba, Trinidad",
+      "lat": -14.834374886108538,
+      "lng": -64.90183966787761,
+      "currency": "USD",
+      "buy": 6.79,
+      "sell": 6.93
+    }
+  ],
+  "officialExchangeRate": [
+    {
+      "id": "1",
+      "date": "2025-05-30",
+      "currency": "USD",
+      "buy": 6.86,
+      "sell": 6.96
+    },
+    {
+      "id": "2",
+      "date": "2025-05-30",
+      "currency": "EUR",
+      "buy": 7.4,
+      "sell": 7.55
+    },
+    {
+      "id": "3",
+      "date": "2025-05-31",
+      "currency": "USD",
+      "buy": 6.87,
+      "sell": 6.97
+    },
+    {
+      "id": "4",
+      "date": "2025-05-31",
+      "currency": "EUR",
+      "buy": 7.41,
+      "sell": 7.56
+    }
+  ],
   "history": [
-  {
-    "id": 1,
-    "exchangeHouseId": 1,
-    "currency": "USD",
-    "date": "2025-05-30T12:00:00Z",
-    "buy": 6.80,
-    "sell": 6.95
-  },
-  {
-    "id": 2,
-    "exchangeHouseId": 2,
-    "currency": "USD",
-    "date": "2025-05-31T12:00:00Z",
-    "buy": 6.78,
-    "sell": 6.92
-  },
-  {
-    "id": 3,
-    "exchangeHouseId": 3,
-    "currency": "EUR",
-    "date": "2025-05-30T12:00:00Z",
-    "buy": 7.45,
-    "sell": 7.60
-  },
-  {
-    "id": 4,
-    "exchangeHouseId": 4,
-    "currency": "USD",
-    "date": "2025-05-31T12:00:00Z",
-    "buy": 6.79,
-    "sell": 6.94
-  },
-  {
-    "id": 5,
-    "exchangeHouseId": 5,
-    "currency": "EUR",
-    "date": "2025-05-31T12:00:00Z",
-    "buy": 7.44,
-    "sell": 7.58
-  },
-  {
-    "id": 6,
-    "exchangeHouseId": 6,
-    "currency": "USD",
-    "date": "2025-05-31T12:00:00Z",
-    "buy": 6.77,
-    "sell": 6.91
-  },
-  {
-    "id": 7,
-    "exchangeHouseId": 7,
-    "currency": "USD",
-    "date": "2025-05-31T12:00:00Z",
-    "buy": 6.81,
-    "sell": 6.96
-  },
-  {
-    "id": 8,
-    "exchangeHouseId": 8,
-    "currency": "USD",
-    "date": "2025-05-31T12:00:00Z",
-    "buy": 6.76,
-    "sell": 6.90
-  },
-  {
-    "id": 9,
-    "exchangeHouseId": 9,
-    "currency": "EUR",
-    "date": "2025-05-31T12:00:00Z",
-    "buy": 7.42,
-    "sell": 7.57
-  },
-  {
-    "id": 10,
-    "exchangeHouseId": 10,
-    "currency": "USD",
-    "date": "2025-05-31T12:00:00Z",
-    "buy": 6.79,
-    "sell": 6.93
-  }
-]
-
-
+    {
+      "id": "1",
+      "exchangeHouseId": 1,
+      "currency": "USD",
+      "date": "2025-05-30T12:00:00Z",
+      "buy": 6.8,
+      "sell": 6.95
+    },
+    {
+      "id": "2",
+      "exchangeHouseId": 2,
+      "currency": "USD",
+      "date": "2025-05-31T12:00:00Z",
+      "buy": 6.78,
+      "sell": 6.92
+    },
+    {
+      "id": "3",
+      "exchangeHouseId": 3,
+      "currency": "EUR",
+      "date": "2025-05-30T12:00:00Z",
+      "buy": 7.45,
+      "sell": 7.6
+    },
+    {
+      "id": "4",
+      "exchangeHouseId": 4,
+      "currency": "USD",
+      "date": "2025-05-31T12:00:00Z",
+      "buy": 6.79,
+      "sell": 6.94
+    },
+    {
+      "id": "5",
+      "exchangeHouseId": 5,
+      "currency": "EUR",
+      "date": "2025-05-31T12:00:00Z",
+      "buy": 7.44,
+      "sell": 7.58
+    },
+    {
+      "id": "6",
+      "exchangeHouseId": 6,
+      "currency": "USD",
+      "date": "2025-05-31T12:00:00Z",
+      "buy": 6.77,
+      "sell": 6.91
+    },
+    {
+      "id": "7",
+      "exchangeHouseId": 7,
+      "currency": "USD",
+      "date": "2025-05-31T12:00:00Z",
+      "buy": 6.81,
+      "sell": 6.96
+    },
+    {
+      "id": "8",
+      "exchangeHouseId": 8,
+      "currency": "USD",
+      "date": "2025-05-31T12:00:00Z",
+      "buy": 6.76,
+      "sell": 6.9
+    },
+    {
+      "id": "9",
+      "exchangeHouseId": 9,
+      "currency": "EUR",
+      "date": "2025-05-31T12:00:00Z",
+      "buy": 7.42,
+      "sell": 7.57
+    },
+    {
+      "id": "10",
+      "exchangeHouseId": 10,
+      "currency": "USD",
+      "date": "2025-05-31T12:00:00Z",
+      "buy": 6.79,
+      "sell": 6.93
+    }
+  ]
 }
