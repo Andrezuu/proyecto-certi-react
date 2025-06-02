@@ -54,7 +54,7 @@ npm install -g json-server
 ### 2. Levanta el servidor de datos
 
 ```bash
-json-server --watch db.json --port 3001
+npx json-server db.json 
 ```
 
 Esto simula un backend RESTful para casas de cambio, usuarios y cotizaciones.
@@ -88,21 +88,6 @@ Esto simula un backend RESTful para casas de cambio, usuarios y cotizaciones.
 | Mapa             | Leaflet, React-Leaflet               |
 | Backend simulado | JSON Server                          |
 | Validaciones     | ESLint, TypeScript strict mode       |
-
----
-
-## 📋 Criterios de Evaluación
-
-| Criterio                            | Puntaje |
-| ----------------------------------- | ------- |
-| 🗺️ Mapa con datos funcionales      | 15%     |
-| 🚨 Alerta funcional de cotización   | 15%     |
-| 🛠️ CRUD funcional con validaciones | 15%     |
-| 📈 Gráfico de historial             | 10%     |
-| 🎨 UI limpia y responsive con MUI   | 15%     |
-| 🗃️ JSON Server bien estructurado   | 10%     |
-| ⚙️ Uso correcto de Hooks            | 10%     |
-| 📖 Documentación técnica (README)   | 10%     |
 
 ---
 
