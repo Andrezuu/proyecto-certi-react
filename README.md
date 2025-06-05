@@ -1,54 +1,112 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 💱 Casa de Cambios Digital Bolivia
 
-Currently, two official plugins are available:
+Este es un proyecto de certificación realizado en **React + TypeScript + Vite**, cuyo objetivo es construir una plataforma simulada para consultar casas de cambio y sus cotizaciones del dólar en Bolivia. La interfaz es moderna y responsive, con integración de mapas, gráficos y validaciones.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✅ Requerimientos Implementados
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 🔐 Registro y Login de usuarios (sin Context API / Redux)
+- 🗺️ Mapa interactivo con casas de cambio (usando `react-leaflet`)
+- 💹 Comparación entre tipo de cambio oficial y paralelo
+- 🚨 Alerta personalizada de cotización del dólar
+- 📈 Historial de cotizaciones por casa de cambio (con gráficos)
+- 🛠️ CRUD completo para casas de cambio (admin simulado con `json-server`)
+- 🧪 Validación de formularios con `Formik + Yup`
+- 📱 Interfaz UI limpia y responsive con `Material UI`
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## 🚀 Instalación y ejecución
+
+### 1. Clona el repositorio
+
+```bash
+git clone https://github.com/Andrezuu/proyecto-certi-react.git
+cd proyecto-certi-react
+````
+
+### 2. Instala las dependencias
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 3. Corre el frontend
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm run dev
 ```
+
+El proyecto se abrirá en: `http://localhost:5173`
+
+---
+
+## 🌐 Backend simulado con JSON Server
+
+### 1. Instala JSON Server (si no lo tienes)
+
+```bash
+npm install -g json-server
+```
+
+### 2. Levanta el servidor de datos
+
+```bash
+npx json-server db.json 
+```
+
+Esto simula un backend RESTful para casas de cambio, usuarios y cotizaciones.
+
+---
+
+## 🧭 Rutas de la Aplicación
+
+| Ruta                | Descripción                                  |
+| ------------------- | -------------------------------------------- |
+| `/login`            | Página de inicio de sesión                   |
+| `/register`         | Registro de nuevo usuario                    |
+| `/app/dashboard`    | Panel principal con resumen                  |
+| `/app/mapa`         | Mapa con casas de cambio                     |
+| `/app/cotizaciones` | Comparación oficial vs paralelo              |
+| `/app/alerta`       | Configuración de alerta por precio del dólar |
+| `/app/historial`    | Historial de cotizaciones (gráfico)          |
+| `/app/admin/casas`  | CRUD de casas de cambio (admin simulado)     |
+
+---
+
+## 📊 Tecnologías Usadas
+
+| Categoría        | Tecnologías                          |
+| ---------------- | ------------------------------------ |
+| Frontend         | React, TypeScript, Vite              |
+| UI               | Material UI (MUI), Styled Components |
+| Formularios      | Formik + Yup                         |
+| Ruteo            | React Router v6                      |
+| Gráficos         | Chart.js, Recharts                   |
+| Mapa             | Leaflet, React-Leaflet               |
+| Backend simulado | JSON Server                          |
+| Validaciones     | ESLint, TypeScript strict mode       |
+
+---
+
+## 🧠 Buenas prácticas implementadas
+
+* Separación de lógica en componentes reutilizables.
+* Uso correcto de hooks (`useEffect`, `useState`).
+* Rutas protegidas con `ProtectedRoutes`.
+* Interfaz centralizada con `Layout`.
+* API centralizada mediante `axios`.
+
+---
+
+## 🧑‍💻 Colaboradores
+
+Proyecto desarrollado por
+- Andres Sanchez
+- Luciano Vargas
+- Alexia Marin
+- Mateo Michel
+
+

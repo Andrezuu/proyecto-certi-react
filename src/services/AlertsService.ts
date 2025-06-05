@@ -1,7 +1,6 @@
 import jsonServerInstance from '../api/jsonInstance';
 import { getParallelRateAverage } from './exchangeService';
 
-// Actualizar el umbral de alerta y el estado de activación del usuario
 export const updateUserAlertSettings = async (userId: number, threshold: number, enabled: boolean) => {
   const response = await jsonServerInstance.patch(`/users/${userId}`, {
     alertThreshold: threshold,
@@ -9,8 +8,7 @@ export const updateUserAlertSettings = async (userId: number, threshold: number,
   });
   return response.data;
 };
-
-// Obtener las configuraciones de alerta del usuario
+o
 export const getUserAlertSettings = async (userId: number) => {
   const response = await jsonServerInstance.get(`/users/${userId}`);
   return {
@@ -19,7 +17,6 @@ export const getUserAlertSettings = async (userId: number) => {
   };
 };
 
-// Verificar si el tipo de cambio paralelo supera el umbral
 export const checkAlert = async (userId: number, currency: string = 'USD') => {
   const { alertThreshold, alertEnabled } = await getUserAlertSettings(userId);
 
@@ -56,7 +53,6 @@ export const checkAlert = async (userId: number, currency: string = 'USD') => {
   };
 };
 
-// Simular un cambio en el tipo de cambio paralelo para probar la alerta
 export const simulateAlertCheck = async (userId: number, currency: string = 'USD') => {
   const { alertThreshold, alertEnabled } = await getUserAlertSettings(userId);
 
@@ -69,10 +65,9 @@ export const simulateAlertCheck = async (userId: number, currency: string = 'USD
     };
   }
 
-  // Valores ficticios para simular un cambio en el tipo de cambio
   const simulatedParallelRate = {
     currency,
-    buy: 7.5, // Valor alto para asegurar que supere la mayoría de los umbrales
+    buy: 7.5, 
     sell: 7.6,
   };
 

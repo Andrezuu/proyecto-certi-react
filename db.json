@@ -7,8 +7,8 @@
       "name": "Admin",
       "lastName": "User",
       "token": "abc123",
-      "alertThreshold": 7,
-      "alertEnabled": false
+      "alertThreshold": 8,
+      "alertEnabled": true
     },
     {
       "id": "2",
@@ -131,6 +131,16 @@
       "currency": "USD",
       "buy": 6.79,
       "sell": 6.93
+    },
+    {
+      "id": "30ea",
+      "name": "Casa ACME",
+      "address": "cdsaca",
+      "currency": "USD",
+      "buy": 12.32,
+      "sell": 1234.4,
+      "lat": -16.500915076227052,
+      "lng": -68.1491410272489
     }
   ],
   "officialExchangeRate": [
@@ -168,81 +178,97 @@
       "id": "1",
       "exchangeHouseId": 1,
       "currency": "USD",
-      "date": "2025-05-30T12:00:00Z",
+      "date": "2025-05-25",
       "buy": 6.8,
       "sell": 6.95
     },
     {
       "id": "2",
-      "exchangeHouseId": 2,
+      "exchangeHouseId": 1,
       "currency": "USD",
-      "date": "2025-05-31T12:00:00Z",
-      "buy": 6.78,
-      "sell": 6.92
-    },
-    {
-      "id": "3",
-      "exchangeHouseId": 3,
-      "currency": "EUR",
-      "date": "2025-05-30T12:00:00Z",
-      "buy": 7.45,
-      "sell": 7.6
-    },
-    {
-      "id": "4",
-      "exchangeHouseId": 4,
-      "currency": "USD",
-      "date": "2025-05-31T12:00:00Z",
-      "buy": 6.79,
-      "sell": 6.94
-    },
-    {
-      "id": "5",
-      "exchangeHouseId": 5,
-      "currency": "EUR",
-      "date": "2025-05-31T12:00:00Z",
-      "buy": 7.44,
-      "sell": 7.58
-    },
-    {
-      "id": "6",
-      "exchangeHouseId": 6,
-      "currency": "USD",
-      "date": "2025-05-31T12:00:00Z",
-      "buy": 6.77,
-      "sell": 6.91
-    },
-    {
-      "id": "7",
-      "exchangeHouseId": 7,
-      "currency": "USD",
-      "date": "2025-05-31T12:00:00Z",
+      "date": "2025-05-26",
       "buy": 6.81,
       "sell": 6.96
     },
     {
-      "id": "8",
-      "exchangeHouseId": 8,
+      "id": "3",
+      "exchangeHouseId": 1,
       "currency": "USD",
-      "date": "2025-05-31T12:00:00Z",
-      "buy": 6.76,
-      "sell": 6.9
+      "date": "2025-05-27",
+      "buy": 6.79,
+      "sell": 6.94
+    },
+    {
+      "id": "4",
+      "exchangeHouseId": 1,
+      "currency": "USD",
+      "date": "2025-05-28",
+      "buy": 6.82,
+      "sell": 6.97
+    },
+    {
+      "id": "5",
+      "exchangeHouseId": 1,
+      "currency": "USD",
+      "date": "2025-05-29",
+      "buy": 6.83,
+      "sell": 6.98
+    },
+    {
+      "id": "6",
+      "exchangeHouseId": 1,
+      "currency": "USD",
+      "date": "2025-05-30",
+      "buy": 6.84,
+      "sell": 6.99
+    },
+    {
+      "id": "7",
+      "exchangeHouseId": 1,
+      "currency": "USD",
+      "date": "2025-05-31",
+      "buy": 6.85,
+      "sell": 7
+    },
+    {
+      "id": "8",
+      "exchangeHouseId": 1,
+      "currency": "USD",
+      "date": "2025-06-01",
+      "buy": 6.86,
+      "sell": 7.01
     },
     {
       "id": "9",
-      "exchangeHouseId": 9,
-      "currency": "EUR",
-      "date": "2025-05-31T12:00:00Z",
-      "buy": 7.42,
-      "sell": 7.57
+      "exchangeHouseId": 1,
+      "currency": "USD",
+      "date": "2025-06-02",
+      "buy": 6.87,
+      "sell": 7.02
     },
     {
       "id": "10",
-      "exchangeHouseId": 10,
+      "exchangeHouseId": 1,
       "currency": "USD",
-      "date": "2025-05-31T12:00:00Z",
-      "buy": 6.79,
-      "sell": 6.93
+      "date": "2025-06-03",
+      "buy": 6.88,
+      "sell": 7.03
+    },
+    {
+      "id": "11",
+      "exchangeHouseId": 1,
+      "currency": "USD",
+      "date": "2025-06-04",
+      "buy": 6.89,
+      "sell": 7.04
+    },
+    {
+      "id": "12",
+      "exchangeHouseId": 1,
+      "currency": "USD",
+      "date": "2025-06-05",
+      "buy": 6.9,
+      "sell": 7.05
     }
   ]
 }

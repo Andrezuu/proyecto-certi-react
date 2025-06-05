@@ -43,7 +43,7 @@ export default function Sidebar({
   const menuItems = [
     { text: "Dashboard", path: "/app/dashboard", icon: <HomeIcon /> },
     { text: "Mapa", path: "/app/mapa", icon: <MapIcon /> },
-    { text: "Cotizaciones", path: "/app/cotizaciones", icon: <ChartIcon /> },
+    //{ text: "Cotizaciones", path: "/app/cotizaciones", icon: <ChartIcon /> },
     { text: "Alerta", path: "/app/alerta", icon: <NotificationsIcon /> },
     { text: "Historial", path: "/app/historial", icon: <HistoryIcon /> },
     { text: "Casas Admin", path: "/app/admin/casas", icon: <AdminIcon /> },
@@ -72,6 +72,7 @@ export default function Sidebar({
         },
       }}
     >
+      {!isMobile && <Toolbar />}
       {isMobile && (
         <Box display="flex" justifyContent="flex-end" p={1}>
           <IconButton onClick={handleDrawerToggle}>
@@ -80,7 +81,6 @@ export default function Sidebar({
         </Box>
       )}
 
-      <Toolbar />
       <List>
         {menuItems.map(({ text, path, icon }) => (
           <ListItem key={text} disablePadding>
