@@ -4,11 +4,14 @@ import App from "./App.tsx";
 import "./index.css";
 import "leaflet/dist/leaflet.css";
 import { BrowserRouter } from "react-router-dom";
+import { UserProvider } from "./context/UserContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
+    <UserProvider>
     <BrowserRouter>
       <App />
     </BrowserRouter>
+    </UserProvider>
   </React.StrictMode>
 );

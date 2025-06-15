@@ -43,7 +43,7 @@ export default function Sidebar({
   const menuItems = [
     { text: "Dashboard", path: "/app/dashboard", icon: <HomeIcon /> },
     { text: "Mapa", path: "/app/mapa", icon: <MapIcon /> },
-    //{ text: "Cotizaciones", path: "/app/cotizaciones", icon: <ChartIcon /> },
+    { text: "Cotizaciones", path: "/app/cotizaciones", icon: <ChartIcon /> },
     { text: "Alerta", path: "/app/alerta", icon: <NotificationsIcon /> },
     { text: "Historial", path: "/app/historial", icon: <HistoryIcon /> },
     { text: "Casas Admin", path: "/app/admin/casas", icon: <AdminIcon /> },

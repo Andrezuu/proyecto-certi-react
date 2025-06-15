@@ -18,6 +18,7 @@ import Toast from "../components/toast";
 import { useState } from "react";
 import { getItem, setItem } from "../helpers/localStorage";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useUserContext } from "../context/UserContext";
 
 const loginSchema = yup.object({
   email: yup.string().email("Email inválido").required("Requerido"),
@@ -25,6 +26,7 @@ const loginSchema = yup.object({
 });
 
 export default function LoginPage() {
+  const { setUser } = useUserContext();
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -38,8 +40,11 @@ export default function LoginPage() {
         formik.resetForm();
         return;
       }
+
       setItem("token", response.token);
       setItem("user", response);
+      setUser(response); // <- actualiza el contexto
+
       navigate("/app/dashboard", { replace: true });
     },
   });
@@ -56,7 +61,7 @@ export default function LoginPage() {
         <CardContent sx={{ padding: 4, textAlign: "center", boxShadow: 3 }}>
           <Box sx={{ mb: 2 }}>
             <img
-              src="/logo.png" 
+              src="/logo.png"
               alt="Logo"
               style={{ width: "80%", height: "auto" }}
             />
