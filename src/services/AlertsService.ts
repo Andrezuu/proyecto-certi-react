@@ -8,7 +8,7 @@ export const updateUserAlertSettings = async (userId: number, threshold: number,
   });
   return response.data;
 };
-o
+
 export const getUserAlertSettings = async (userId: number) => {
   const response = await jsonServerInstance.get(`/users/${userId}`);
   return {

@@ -7,7 +7,7 @@
       "name": "Admin",
       "lastName": "User",
       "token": "abc123",
-      "alertThreshold": 8,
+      "alertThreshold": 10,
       "alertEnabled": true
     },
     {
@@ -29,6 +29,15 @@
       "token": "abc123",
       "alertThreshold": 7.5,
       "alertEnabled": false
+    },
+    {
+      "id": "d17a",
+      "email": "mateo8michel8@gmail.com",
+      "password": "StringPassword12",
+      "name": "Luis Mateo",
+      "lastName": "Michel Flores",
+      "token": "a42oj09rp4vmbflieor",
+      "alertThreshold": 0
     }
   ],
   "exchangeHouses": [
@@ -141,6 +150,16 @@
       "sell": 1234.4,
       "lat": -16.500915076227052,
       "lng": -68.1491410272489
+    },
+    {
+      "id": "17b5",
+      "name": "PruebaUPB",
+      "address": "Postgrado",
+      "currency": "EURasdadsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "buy": 10,
+      "sell": 11,
+      "lat": -16.500420453362533,
+      "lng": -68.15284966223214
     }
   ],
   "officialExchangeRate": [
