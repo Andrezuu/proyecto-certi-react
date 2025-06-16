@@ -9,7 +9,10 @@ import HistorialPage from "../pages/HistorialPage";
 import Layout from "../layout/Layout";
 import CasasAdminPage from "../pages/CasasAdminPage";
 import ProfilePage from "../pages/ProfilePage";
-import UnauthorizedPage from "../pages/UnauthorizedPage"; // Asegúrate de tener esta página
+import UnauthorizedPage from "../pages/UnauthorizedPage"; 
+import ProtectedRoutes from "../guards/ProtectedRoutes";
+import TransactionsPage from "../pages/TransactionPage";
+import TransaccionDashboardPage from "../pages/TransactionDashboard";
 
 export const AppRoutes = () => {
   return (
@@ -19,7 +22,9 @@ export const AppRoutes = () => {
       <Route
         path="/app"
         element={
-          <Layout /> // Renderizamos Layout directamente, sin ProtectedRoutes anidado
+          <ProtectedRoutes>
+            <Layout />
+          </ProtectedRoutes>
         }
       >
         <Route index element={<DashboardPage />} />
@@ -28,7 +33,12 @@ export const AppRoutes = () => {
         <Route path="cotizaciones" element={<CotizacionesPage />} />
         <Route path="historial" element={<HistorialPage />} />
         <Route path="profile" element={<ProfilePage />} />
-        <Route path="admin/casas" element={<CasasAdminPage />} /> {/* Sin ProtectedRoutes */}
+        <Route path="admin/casas" element={<CasasAdminPage />} />
+        <Route path="transacciones" element={<TransactionsPage />} />
+        <Route
+          path="transacciones-dashboard"
+          element={<TransaccionDashboardPage />}
+        />
       </Route>
       <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/unauthorized" element={<UnauthorizedPage />} />

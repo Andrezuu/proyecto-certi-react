@@ -9,7 +9,8 @@
       "token": "abc123",
       "alertThreshold": 10.07,
       "alertEnabled": true,
-      "role": "admin"
+      "role": "admin",
+      "wallet": 331
     },
     {
       "id": "2",
@@ -20,7 +21,8 @@
       "token": "def456",
       "alertThreshold": 7.2,
       "alertEnabled": false,
-      "role": "client"
+      "role": "client",
+      "wallet": 1158
     },
     {
       "id": "3",
@@ -30,8 +32,9 @@
       "lastName": "User2",
       "token": "abc123",
       "alertThreshold": 7.5,
-      "alertEnabled": true,
-      "role": "admin"
+      "alertEnabled": false,
+      "role": "admin",
+      "wallet": 761
     },
     {
       "id": "d17a",
@@ -42,7 +45,8 @@
       "token": "a42oj09rp4vmbflieor",
       "alertThreshold": 0,
       "alertEnabled": false,
-      "role": "client"
+      "role": "client",
+      "wallet": 1000
     },
     {
       "id": "9a39",
@@ -53,7 +57,8 @@
       "token": "9dt71obmebembygdqjm",
       "alertThreshold": 0,
       "alertEnabled": false,
-      "role": "client"
+      "role": "client",
+      "wallet": 1000
     },
     {
       "id": "12e2",
@@ -64,7 +69,8 @@
       "token": "qzv3m6pdzz9mbyhsixr",
       "alertThreshold": 0,
       "alertEnabled": false,
-      "role": "client"
+      "role": "client",
+      "wallet": 1200
     }
   ],
   "exchangeHouses": [
@@ -197,9 +203,9 @@
       "id": "4555",
       "name": "PRUEBAS REGLAS",
       "address": "casi casi por mafalda",
-      "currency": "EUR",
-      "buy": 8,
-      "sell": 9,
+      "currency": "bolivianos",
+      "buy": 310,
+      "sell": 90,
       "lat": -16.54366290177747,
       "lng": -68.07818472933916,
       "commission": 2,
@@ -335,6 +341,85 @@
       "date": "2025-06-05",
       "buy": 6.9,
       "sell": 7.05
+    }
+  ],
+  "transactions": [
+    {
+      "id": "1",
+      "amount": 100,
+      "type": "Compra",
+      "currency": "USD",
+      "time": "2025-06-15T12:00:00Z",
+      "rate": 8.23,
+      "senderId": "1",
+      "exchangeHouseId": "Casa ACME",
+      "receiverId": "2"
+    },
+    {
+      "id": "2",
+      "amount": 50,
+      "type": "Venta",
+      "currency": "USD",
+      "time": "2025-06-15T14:00:00Z",
+      "rate": 9.23,
+      "senderId": "2",
+      "exchangeHouseId": "Casa de cambios Armella",
+      "receiverId": "1"
+    },
+    {
+      "id": "abc0",
+      "amount": 111,
+      "type": "Compra",
+      "currency": "USD",
+      "rate": 7.23,
+      "receiverId": "2",
+      "senderId": "1",
+      "exchangeHouseId": "Casa ACME",
+      "time": "2025-06-16T04:18:05.139Z"
+    },
+    {
+      "id": "4cb9",
+      "amount": 123,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "2",
+      "exchangeHouseId": "Casa ACME",
+      "rate": 12.3,
+      "senderId": "1",
+      "time": "2025-06-16T16:10:56.243Z"
+    },
+    {
+      "id": "c553",
+      "amount": 500,
+      "type": "Venta",
+      "currency": "USD",
+      "receiverId": "2",
+      "exchangeHouseId": "Casa de Cambio EFI",
+      "rate": 15.2,
+      "senderId": "1",
+      "time": "2025-06-16T16:30:49.809Z"
+    },
+    {
+      "id": "304d",
+      "amount": 11,
+      "type": "Venta",
+      "currency": "USD",
+      "receiverId": "3",
+      "exchangeHouseId": "INTERNATIONAL MONEY EXCHANGE SRL",
+      "rate": 12,
+      "senderId": "1",
+      "time": "2025-06-16T16:45:04.247Z"
+    },
+    {
+      "id": "c8e3",
+      "amount": 12,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "2",
+      "exchangeHouseId": "Unitransfer SRL",
+      "rate": 12,
+      "senderId": "1",
+      "time": "2025-06-16T16:46:19.013Z"
     }
   ]
 }

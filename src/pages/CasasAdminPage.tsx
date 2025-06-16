@@ -78,11 +78,13 @@ const CasasAdminPage = () => {
   };
 
   return (
-    <Box>
-      <Typography variant="h4">Administrar Casas de Cambio</Typography>
+    <Box sx={{ padding: 4 }}>
+      <Typography variant="h4" sx={{ marginBottom: 4 }} >
+        Administrar Casas de Cambio
+      </Typography>
       <Button
         variant="contained"
-        sx={{ marginY: 2 }}
+        sx={{ marginBottom: 2 }}
         color="primary"
         onClick={() => handleOpen()}
       >
