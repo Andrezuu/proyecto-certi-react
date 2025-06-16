@@ -19,7 +19,8 @@ import {
   AdminPanelSettings as AdminIcon,
   Logout as LogoutIcon,
   ChevronLeft as ChevronLeftIcon,
-  Person as PersonIcon, // Icono para Perfil
+  Person as PersonIcon,
+  CompareArrows as CompareArrowsIcon,
 } from "@mui/icons-material";
 import { useNavigate, useLocation } from "react-router-dom";
 import { clearStorage } from "../helpers/localStorage";
@@ -50,6 +51,8 @@ export default function Sidebar({
     { text: "Historial", path: "/app/historial", icon: <HistoryIcon /> },
     ...(isAdmin() ? [{ text: "Casas Admin", path: "/app/admin/casas", icon: <AdminIcon /> }] : []),
     { text: "Perfil", path: "/app/profile", icon: <PersonIcon /> }, // Nuevo item Perfil
+    { text: "Transacciones", path: "/app/transacciones", icon: <CompareArrowsIcon /> },
+    { text: "Transacciones", path: "/app/transacciones-dashboard", icon: <CompareArrowsIcon /> },
   ];
 
   useEffect(() => {

@@ -12,7 +12,8 @@ export interface User {
   alertEnabled: boolean;
   role: "admin" | "cliente" | string;
   currencyPreference?: string;
-  expiresAt?: number; // Opcional para expiración
+  expiresAt?: number; 
+  wallet: number;
 }
 
 interface UserContextType {

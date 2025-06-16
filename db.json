@@ -9,7 +9,8 @@
       "token": "abc123",
       "alertThreshold": 10.07,
       "alertEnabled": true,
-      "role": "admin"
+      "role": "admin",
+      "wallet": 989
     },
     {
       "id": "2",
@@ -20,7 +21,8 @@
       "token": "def456",
       "alertThreshold": 7.2,
       "alertEnabled": false,
-      "role": "client"
+      "role": "client",
+      "wallet": 511
     },
     {
       "id": "3",
@@ -30,8 +32,9 @@
       "lastName": "User2",
       "token": "abc123",
       "alertThreshold": 7.5,
-      "alertEnabled": true,
-      "role": "admin"
+      "alertEnabled": false,
+      "role": "admin",
+      "wallet": 750
     },
     {
       "id": "d17a",
@@ -42,7 +45,8 @@
       "token": "a42oj09rp4vmbflieor",
       "alertThreshold": 0,
       "alertEnabled": false,
-      "role": "client"
+      "role": "client",
+      "wallet": 1000
     },
     {
       "id": "9a39",
@@ -53,7 +57,8 @@
       "token": "9dt71obmebembygdqjm",
       "alertThreshold": 0,
       "alertEnabled": false,
-      "role": "client"
+      "role": "client",
+      "wallet": 1000
     },
     {
       "id": "12e2",
@@ -64,7 +69,8 @@
       "token": "qzv3m6pdzz9mbyhsixr",
       "alertThreshold": 0,
       "alertEnabled": false,
-      "role": "client"
+      "role": "client",
+      "wallet": 1200
     }
   ],
   "exchangeHouses": [
@@ -197,9 +203,9 @@
       "id": "4555",
       "name": "PRUEBAS REGLAS",
       "address": "casi casi por mafalda",
-      "currency": "EUR",
-      "buy": 8,
-      "sell": 9,
+      "currency": "bolivianos",
+      "buy": 310,
+      "sell": 90,
       "lat": -16.54366290177747,
       "lng": -68.07818472933916,
       "commission": 2,
@@ -335,6 +341,314 @@
       "date": "2025-06-05",
       "buy": 6.9,
       "sell": 7.05
+    }
+  ],
+  "transactions": [
+    {
+      "id": "1",
+      "amount": 100,
+      "type": "Compra",
+      "currency": "USD",
+      "time": "2025-06-15T12:00:00Z",
+      "senderId": "1",
+      "receiverId": "2"
+    },
+    {
+      "id": "2",
+      "amount": 50,
+      "type": "Venta",
+      "currency": "USD",
+      "time": "2025-06-15T14:00:00Z",
+      "senderId": "2",
+      "receiverId": "1"
+    },
+    {
+      "id": "abc0",
+      "amount": 111,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "2",
+      "senderId": "1",
+      "time": "2025-06-16T04:18:05.139Z"
+    },
+    {
+      "id": "e148",
+      "amount": 11,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "2",
+      "time": "2025-06-16T04:37:47.039Z"
+    },
+    {
+      "id": "b7f9",
+      "amount": 12,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "d17a",
+      "senderId": "2",
+      "time": "2025-06-16T04:47:45.989Z"
+    },
+    {
+      "id": "5d6b",
+      "amount": 12,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "3",
+      "senderId": "2",
+      "time": "2025-06-16T04:49:03.279Z"
+    },
+    {
+      "id": "ebd2",
+      "amount": 11,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "2",
+      "time": "2025-06-16T04:50:14.763Z"
+    },
+    {
+      "id": "a2d7",
+      "amount": 1,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "2",
+      "time": "2025-06-16T04:50:58.537Z"
+    },
+    {
+      "id": "c972",
+      "amount": 12,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "2",
+      "time": "2025-06-16T04:51:24.096Z"
+    },
+    {
+      "id": "053d",
+      "amount": 12,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "2",
+      "time": "2025-06-16T04:52:45.832Z"
+    },
+    {
+      "id": "3428",
+      "amount": 1,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "2",
+      "time": "2025-06-16T04:53:47.127Z"
+    },
+    {
+      "id": "ce20",
+      "amount": 11,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "2",
+      "time": "2025-06-16T04:56:22.032Z"
+    },
+    {
+      "id": "1f44",
+      "amount": 1,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "2",
+      "time": "2025-06-16T04:56:37.226Z"
+    },
+    {
+      "id": "61f3",
+      "amount": 11,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "2",
+      "time": "2025-06-16T04:57:37.973Z"
+    },
+    {
+      "id": "4cf3",
+      "amount": 11,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "2",
+      "time": "2025-06-16T04:58:13.632Z"
+    },
+    {
+      "id": "afc4",
+      "amount": 1,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "2",
+      "time": "2025-06-16T05:00:05.068Z"
+    },
+    {
+      "id": "f6b1",
+      "amount": 11,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "2",
+      "time": "2025-06-16T05:00:59.610Z"
+    },
+    {
+      "id": "94ae",
+      "amount": 11,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "2",
+      "time": "2025-06-16T05:03:16.596Z"
+    },
+    {
+      "id": "475a",
+      "amount": 11,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "2",
+      "time": "2025-06-16T05:04:49.751Z"
+    },
+    {
+      "id": "4afe",
+      "amount": 12,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "3",
+      "senderId": "2",
+      "time": "2025-06-16T05:05:56.493Z"
+    },
+    {
+      "id": "ae65",
+      "amount": 11,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "2",
+      "time": "2025-06-16T05:07:42.466Z"
+    },
+    {
+      "id": "d752",
+      "amount": 12,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "2",
+      "time": "2025-06-16T05:09:58.312Z"
+    },
+    {
+      "id": "41d6",
+      "amount": 12,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "2",
+      "time": "2025-06-16T05:11:19.137Z"
+    },
+    {
+      "id": "faab",
+      "amount": 12,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "2",
+      "time": "2025-06-16T05:12:04.606Z"
+    },
+    {
+      "id": "53ed",
+      "amount": 111,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "2",
+      "time": "2025-06-16T05:12:17.825Z"
+    },
+    {
+      "id": "3e11",
+      "amount": 12,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "2",
+      "senderId": "1",
+      "time": "2025-06-16T05:13:33.558Z"
+    },
+    {
+      "id": "bbac",
+      "amount": 11,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "1",
+      "time": "2025-06-16T05:14:22.594Z"
+    },
+    {
+      "id": "a7e5",
+      "amount": 11,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "1",
+      "time": "2025-06-16T05:14:36.959Z"
+    },
+    {
+      "id": "9861",
+      "amount": 11,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "1",
+      "senderId": "1",
+      "time": "2025-06-16T05:14:47.472Z"
+    },
+    {
+      "id": "47c6",
+      "amount": 12,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "2",
+      "senderId": "1",
+      "time": "2025-06-16T05:15:30.907Z"
+    },
+    {
+      "id": "3aa5",
+      "amount": 11,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "2",
+      "senderId": "1",
+      "time": "2025-06-16T05:16:32.801Z"
+    },
+    {
+      "id": "f64b",
+      "amount": 11,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "3",
+      "senderId": "1",
+      "time": "2025-06-16T05:16:47.223Z"
+    },
+    {
+      "id": "5187",
+      "amount": 12,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "2",
+      "senderId": "1",
+      "time": "2025-06-16T05:17:04.501Z"
+    },
+    {
+      "id": "6e49",
+      "amount": 12,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "2",
+      "senderId": "1",
+      "time": "2025-06-16T05:20:00.610Z"
     }
   ]
 }
