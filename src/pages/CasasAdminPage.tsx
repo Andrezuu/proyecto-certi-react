@@ -1,42 +1,45 @@
-// src/pages/CasasAdminPage.tsx
 import { useEffect, useState } from "react";
-import { Button, Box, Typography, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
-import { Navigate } from "react-router-dom";
 import {
-  createExchangeHouse,
-  deleteExchangeHouse,
-  getExchangeHouses,
-  updateExchangeHouse,
-} from "../services/exchangeHouseService";
+  Button,
+  Box,
+  Typography,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@mui/material";
 import type { IExchangeHouse } from "../models/IExchangeHouse";
 import ExchangeHouseForm from "../components/ExchangeHouseForm";
 import ExchangeHouseTable from "../components/ExchangeHouseTable";
+import { useExchangeManagement } from "../hooks/useExchangeManagement";
 import { useUserStore } from "../store/userStore";
 
 const CasasAdminPage = () => {
   const user = useUserStore((state) => state.user);
   const isAdmin = useUserStore((state) => state.isAdmin);
-  const [casas, setCasas] = useState<IExchangeHouse[]>([]);
+  const {
+    casas,
+    crearCasa,
+    actualizarCasa,
+    eliminarCasa,
+    fetchCasas,
+  } = useExchangeManagement();
+
   const [open, setOpen] = useState(false);
   const [editingCasa, setEditingCasa] = useState<IExchangeHouse | null>(null);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [selectedCasaId, setSelectedCasaId] = useState<number | null>(null);
 
-  // Verificar autenticación y rol
   if (!user || !isAdmin()) {
     console.log("Acceso denegado, redirigiendo a /unauthorized. User:", user);
     return <Navigate to="/unauthorized" replace />;
   }
 
-  const fetchCasas = async () => {
-    const response = await getExchangeHouses();
-    setCasas(response);
-  };
-
   useEffect(() => {
     fetchCasas();
   }, []);
-
+    
   const handleOpen = (casa: IExchangeHouse | null = null) => {
     setEditingCasa(casa);
     setOpen(true);
@@ -49,17 +52,16 @@ const CasasAdminPage = () => {
 
   const handleSubmit = async (values: IExchangeHouse) => {
     if (editingCasa) {
-      await updateExchangeHouse(values, editingCasa.id);
+      await actualizarCasa(values, editingCasa.id!);
     } else {
-      await createExchangeHouse(values);
+      await crearCasa(values);
     }
-    fetchCasas();
+    handleClose();
   };
 
   const handleDelete = async () => {
     if (selectedCasaId !== null) {
-      await deleteExchangeHouse(selectedCasaId);
-      fetchCasas();
+      await eliminarCasa(selectedCasaId);
     }
     setDeleteDialogOpen(false);
     setSelectedCasaId(null);
@@ -77,9 +79,7 @@ const CasasAdminPage = () => {
 
   return (
     <Box>
-      <Typography variant="h4">
-        Administrar Casas de Cambio
-      </Typography>
+      <Typography variant="h4">Administrar Casas de Cambio</Typography>
       <Button
         variant="contained"
         sx={{ marginY: 2 }}
@@ -88,11 +88,7 @@ const CasasAdminPage = () => {
       >
         Agregar Casa de Cambio
       </Button>
-      <ExchangeHouseTable
-        casas={casas}
-        onEdit={handleOpen}
-        onDelete={openDeleteDialog}
-      />
+      <ExchangeHouseTable casas={casas} onEdit={handleOpen} onDelete={openDeleteDialog} />
       <ExchangeHouseForm
         open={open}
         onClose={handleClose}
@@ -106,6 +102,11 @@ const CasasAdminPage = () => {
             sell: 0,
             lat: -16.5,
             lng: -68.15,
+            commission: 0,
+            minimumCapital: 0,
+            startTime: "",
+            endTime: "",
+            operatingHours: "",
           }
         }
       />
@@ -113,7 +114,8 @@ const CasasAdminPage = () => {
         <DialogTitle>Confirmar Eliminación</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            ¿Estás seguro de que deseas eliminar esta casa de cambio? Esta acción no se puede deshacer.
+            ¿Estás segura de que deseas eliminar esta casa de cambio? Esta acción no se puede
+            deshacer.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
