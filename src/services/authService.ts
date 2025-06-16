@@ -16,7 +16,8 @@ export const register = async (
   email: string,
   password: string,
   name: string,
-  lastName: string
+  lastName: string,
+  role: "admin" | "client" = "client"
 ) => {
   try {
     const token = generateToken();
@@ -28,14 +29,14 @@ export const register = async (
       lastName,
       token,
       alertThreshold: 0,
+      alertEnabled: false,
+      role, // <-- usa el parámetro
     };
 
     const response = await jsonServerInstance.post(`/users`, newUser);
-
     return response.data;
   } catch (error) {
     console.error("Error en el registro:", error);
     return null;
   }
 };
-

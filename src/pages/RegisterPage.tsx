@@ -8,6 +8,8 @@ import {
   Typography,
   Link,
   IconButton,
+  Switch,
+  FormControlLabel,
 } from "@mui/material";
 import {
   AccountCircle,
@@ -15,54 +17,19 @@ import {
   Visibility,
   VisibilityOff,
 } from "@mui/icons-material";
-import * as yup from "yup";
-import { useFormik } from "formik";
-import { register } from "../services/authService";
-import { useNavigate, Link as RouterLink } from "react-router-dom";
-import Toast from "../components/toast";
-import { useState } from "react";
 
-const registerSchema = yup.object({
-  name: yup.string().required("Requerido"),
-  lastName: yup.string().required("Requerido"),
-  email: yup.string().email("Email inválido").required("Requerido"),
-  password: yup.string().min(6, "Mínimo 6 caracteres").required("Requerido"),
-  repeatPassword: yup
-    .string()
-    .oneOf([yup.ref("password")], "Las contraseñas no coinciden")
-    .required("Requerido"),
-});
+import { Link as RouterLink } from "react-router-dom";
+import Toast from "../components/toast";
+import { useRegister } from "../hooks/useAuth";
 
 export default function RegisterPage() {
-  const navigate = useNavigate();
-  const [registerError, setRegisterError] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      lastName: "",
-      email: "",
-      password: "",
-      repeatPassword: "",
-    },
-    validationSchema: registerSchema,
-    onSubmit: async (values) => {
-      const response = await register(
-        values.email,
-        values.password,
-        values.name,
-        values.lastName
-      );
-
-      if (!response) {
-        setRegisterError(true);
-        return;
-      }
-
-      navigate("/");
-    },
-  });
+  const {
+    formik,
+    registerError,
+    setRegisterError,
+    showPassword,
+    setShowPassword,
+  } = useRegister();
 
   return (
     <Container maxWidth="xs">
@@ -72,11 +39,11 @@ export default function RegisterPage() {
         severity="error"
         onClose={() => setRegisterError(false)}
       />
-      <Box sx={{ }}>
+      <Box sx={{}}>
         <CardContent sx={{ padding: 4, textAlign: "center", boxShadow: 3 }}>
           <Box sx={{ mb: 2 }}>
             <img
-              src="/logo.png" 
+              src="/logo.png"
               alt="Logo"
               style={{ width: "80%", height: "auto" }}
             />
@@ -188,6 +155,19 @@ export default function RegisterPage() {
                 ),
               }}
             />
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={formik.values.isAdmin}
+                  onChange={(e) =>
+                    formik.setFieldValue("isAdmin", e.target.checked)
+                  }
+                  name="isAdmin"
+                />
+              }
+              label="Registrarme como administrador"
+            />
+
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 2 }}>
               Registrarme
             </Button>

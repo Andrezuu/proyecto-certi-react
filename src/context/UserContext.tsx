@@ -10,12 +10,18 @@ export interface User {
   token: string;
   alertThreshold: number;
   alertEnabled: boolean;
+  role: "admin" | "cliente" | string;
+  currencyPreference?: string;
+  expiresAt?: number; // Opcional para expiración
 }
 
 interface UserContextType {
   user: User | null;
   setUser: (user: User | null) => void;
   logout: () => void;
+  updateUser: (updates: Partial<User>) => void;
+  isAdmin: () => boolean;
+  hasRole: (role: string) => boolean;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -25,16 +31,35 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const storedUser = getItem("user");
-    if (storedUser) {
-      setUserState(storedUser);
+    const storedToken = getItem("token");
+    console.log("Restoring session - user:", storedUser, "token:", storedToken); // Depuración
+    if (
+      storedUser &&
+      storedToken &&
+      typeof storedUser === "object" &&
+      "id" in storedUser &&
+      "email" in storedUser &&
+      "token" in storedUser
+    ) {
+      if (storedUser.expiresAt && storedUser.expiresAt < Date.now()) {
+        logout(); // Forzar logout si expiró
+      } else {
+        setUserState({ ...storedUser, token: storedToken }); // Restaurar sesión
+      }
     }
   }, []);
 
   const setUser = (user: User | null) => {
     if (user) {
+      if (!user.id || !user.email || !user.token) {
+        console.warn("Datos de usuario incompletos, no se guardará.");
+        return;
+      }
       setItem("user", user);
+      setItem("token", user.token);
     } else {
       removeItem("user");
+      removeItem("token");
     }
     setUserState(user);
   };
@@ -45,8 +70,19 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     setUserState(null);
   };
 
+  const updateUser = (updates: Partial<User>) => {
+    if (user) {
+      const updatedUser = { ...user, ...updates };
+      setItem("user", updatedUser);
+      setUserState(updatedUser);
+    }
+  };
+
+  const isAdmin = () => user?.role === "admin" || false;
+  const hasRole = (role: string) => user?.role === role || false;
+
   return (
-    <UserContext.Provider value={{ user, setUser, logout }}>
+    <UserContext.Provider value={{ user, setUser, logout, updateUser, isAdmin, hasRole }}>
       {children}
     </UserContext.Provider>
   );
