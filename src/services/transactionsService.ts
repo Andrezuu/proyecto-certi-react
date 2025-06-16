@@ -18,7 +18,6 @@ export const getTransactionsByUser = async (userId: string) => {
 
 export const createTransaction = async (transactionData: ITransaction) => {
   try {
-    console.log(transactionData);
     const response = await jsonInstance.post("/transactions", transactionData);
     return response.data;
   } catch (error) {

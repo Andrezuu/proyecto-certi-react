@@ -12,8 +12,20 @@ import { getUsers, updateWallets } from "../services/userService";
 export const useTransactions = () => {
   const [transactions, setTransactions] = useState([] as ITransaction[]);
   const [users, setUsers] = useState([] as User[]);
+  const [filteredTransactions, setFilteredTransactions] = useState(
+    [] as ITransaction[]
+  );
+  const [dateRange, setDateRange] = useState("day");
   const [openForm, setOpenForm] = useState(false);
   const { user, setUser } = useUserContext();
+  const totalVolume = transactions.reduce((acc, t) => acc + t.amount, 0);
+  const dailyVolume = transactions
+    .filter((t) => {
+      const today = new Date();
+      const txDate = new Date(t.time);
+      return today.toDateString() === txDate.toDateString();
+    })
+    .reduce((acc, t) => acc + t.amount, 0);
 
   const transactionSchema = Yup.object({
     amount: Yup.number()
@@ -53,11 +65,19 @@ export const useTransactions = () => {
     },
   });
 
+  useEffect(() => {
+    fetchTransactions();
+    fetchUsers();
+  }, []);
+
+  useEffect(() => {
+    filterTransactions(dateRange);
+  }, [transactions, dateRange]);
+
   const fetchUsers = async () => {
     try {
       const data = await getUsers();
       const filteredUsers = data.filter((userQ: User) => userQ.id !== user?.id);
-      console.log("Usuarios obtenidos:", filteredUsers);
       setUsers(filteredUsers);
     } catch (error) {
       console.error("Error al obtener los usuarios:", error);
@@ -73,8 +93,7 @@ export const useTransactions = () => {
   };
 
   const closeFormHandler = () => {
-    console.log("Closing form");
-    setOpenForm((prev) => false);
+    setOpenForm(false);
   };
 
   const fetchTransactions = async () => {
@@ -82,17 +101,7 @@ export const useTransactions = () => {
     setTransactions(response);
   };
 
-  useEffect(() => {
-    fetchTransactions();
-    fetchUsers();
-  }, []);
-
-  useEffect(() => {
-    console.log("Open form state changed:", openForm);
-  }, [openForm]);
-
   const submitHandler = async (values: ITransaction) => {
-    console.log("Submitting transaction:");
     const transaction = {
       ...values,
       senderId: user!.id,
@@ -103,12 +112,55 @@ export const useTransactions = () => {
     const userRes = await updateWallets(transactionRes);
     setUser(userRes);
     setTransactions((prev) => [...prev, transactionRes]);
-    setOpenForm(false);
+    closeFormHandler();
     formik.resetForm();
+  };
+
+  const filterTransactions = (dateRange: string) => {
+    const now = new Date();
+    const filtered = transactions.filter((transaction) => {
+      const txDate = new Date(transaction.time);
+      switch (dateRange) {
+        case "day":
+          return txDate.toDateString() === now.toDateString();
+        case "week":
+          const weekAgo = new Date(now.setDate(now.getDate() - 7));
+          return txDate >= weekAgo;
+        case "month":
+          const monthAgo = new Date(now.setMonth(now.getMonth() - 1));
+          return txDate >= monthAgo;
+        default:
+          return true;
+      }
+    });
+
+    const groupedData = filtered.reduce((acc, transaction) => {
+      const date = new Date(transaction.time).toLocaleDateString();
+      if (!acc[date]) {
+        acc[date] = {
+          date,
+          total: 0,
+          compras: 0,
+          ventas: 0,
+        };
+      }
+      acc[date].total += transaction.amount;
+      if (transaction.type === "Compra") {
+        acc[date].compras += transaction.amount;
+      } else {
+        acc[date].ventas += transaction.amount;
+      }
+      return acc;
+    }, {} as Record<string, any>);
+
+    setFilteredTransactions(Object.values(groupedData));
   };
 
   return {
     transactions,
+    filteredTransactions,
+    setDateRange,
+    dateRange,
     openForm,
     openFormHandler,
     closeFormHandler,
@@ -116,5 +168,7 @@ export const useTransactions = () => {
     user,
     users,
     formik,
+    totalVolume,
+    dailyVolume,
   };
 };

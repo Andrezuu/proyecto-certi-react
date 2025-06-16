@@ -9,9 +9,10 @@ import HistorialPage from "../pages/HistorialPage";
 import Layout from "../layout/Layout";
 import CasasAdminPage from "../pages/CasasAdminPage";
 import ProfilePage from "../pages/ProfilePage";
-import UnauthorizedPage from "../pages/UnauthorizedPage"; // Asegúrate de tener esta página
+import UnauthorizedPage from "../pages/UnauthorizedPage"; 
 import ProtectedRoutes from "../guards/ProtectedRoutes";
 import TransactionsPage from "../pages/TransaccionPage";
+import TransaccionDashboardPage from "../pages/TransaccionDashboard";
 
 export const AppRoutes = () => {
   return (
@@ -34,6 +35,10 @@ export const AppRoutes = () => {
         <Route path="profile" element={<ProfilePage />} />
         <Route path="admin/casas" element={<CasasAdminPage />} />
         <Route path="transacciones" element={<TransactionsPage />} />
+        <Route
+          path="transacciones-dashboard"
+          element={<TransaccionDashboardPage />}
+        />
       </Route>
       <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/unauthorized" element={<UnauthorizedPage />} />

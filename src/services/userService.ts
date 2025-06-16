@@ -25,23 +25,9 @@ export const updateWallets = async (transaction: ITransaction) => {
     const receiver = receiverResponse.data as User;
 
     // Actualizar los saldos
-    console.log("Actualizando wallets:", {
-      senderId: sender.id,
-      senderWallet: sender.wallet,
-      receiverId: receiver.id,
-      receiverWallet: receiver.wallet,
-      transactionAmount: transaction.amount,
-    });
     sender.wallet -= transaction.amount;
     receiver.wallet += transaction.amount;
-    console.log("Wallets actualizados:", {
-      senderId: sender.id,
-      senderWallet: sender.wallet,
-      receiverId: receiver.id,
-      receiverWallet: receiver.wallet,
-    });
 
-    // Guardar los cambios en el backend
     const senderRes = await jsonInstance.put(`/users/${sender.id}`, sender);
     await jsonInstance.put(`/users/${receiver.id}`, receiver);
     return senderRes.data;
