@@ -18,7 +18,11 @@ import InfoIcon from "@mui/icons-material/Info";
 import { useUserStore } from "../store/userStore";
 
 interface AlertSettingsProps {
-  onUpdate: (updates: { alertThreshold: number; alertEnabled: boolean; currencyPreference: string }) => void;
+  onUpdate: (updates: {
+    alertThreshold: number;
+    alertEnabled: boolean;
+    currencyPreference: string;
+  }) => void;
 }
 
 const AlertSettings = ({ onUpdate }: AlertSettingsProps) => {
@@ -48,11 +52,11 @@ const AlertSettings = ({ onUpdate }: AlertSettingsProps) => {
     onSubmit: async (values) => {
       setLoading(true);
       try {
-        onUpdate({
+        await onUpdate({
           alertThreshold: values.threshold,
           alertEnabled: values.enabled,
           currencyPreference: values.currencyPreference,
-        }); // Llama al callback para actualizar el store
+        }); // Espera la actualización del backend y store
         setAlertStatus({
           triggered: false,
           message: "Configuración guardada exitosamente.",
@@ -60,8 +64,9 @@ const AlertSettings = ({ onUpdate }: AlertSettingsProps) => {
       } catch (error) {
         console.error("Error al actualizar las configuraciones:", error);
         setAlertStatus({
-          triggered: false,
-          message: "Error al actualizar las configuraciones. Inténtalo de nuevo.",
+          triggered: true,
+          message:
+            "Error al actualizar las configuraciones. Inténtalo de nuevo.",
         });
       } finally {
         setLoading(false);
@@ -104,11 +109,15 @@ const AlertSettings = ({ onUpdate }: AlertSettingsProps) => {
           control={
             <Switch
               checked={formik.values.enabled}
-              onChange={(e) => formik.setFieldValue("enabled", e.target.checked)}
+              onChange={(e) =>
+                formik.setFieldValue("enabled", e.target.checked)
+              }
               name="enabled"
             />
           }
-          label={formik.values.enabled ? "Alerta Activada" : "Alerta Desactivada"}
+          label={
+            formik.values.enabled ? "Alerta Activada" : "Alerta Desactivada"
+          }
           sx={{ mb: 2 }}
         />
         <TextField
@@ -119,8 +128,14 @@ const AlertSettings = ({ onUpdate }: AlertSettingsProps) => {
           label="Moneda Preferida"
           value={formik.values.currencyPreference}
           onChange={formik.handleChange}
-          error={formik.touched.currencyPreference && Boolean(formik.errors.currencyPreference)}
-          helperText={formik.touched.currencyPreference && formik.errors.currencyPreference}
+          error={
+            formik.touched.currencyPreference &&
+            Boolean(formik.errors.currencyPreference)
+          }
+          helperText={
+            formik.touched.currencyPreference &&
+            formik.errors.currencyPreference
+          }
           sx={{ mb: 2 }}
         >
           <MenuItem value="USD">USD</MenuItem>

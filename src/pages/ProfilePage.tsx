@@ -2,14 +2,22 @@
 import { useUserStore } from "../store/userStore";
 import { Card, CardContent, Typography, Box } from "@mui/material";
 import AlertSettings from "../components/AlertComponent";
+import { updateUser } from "../services/authService"; // Importa el nuevo servicio
 
 const ProfilePage = () => {
-  const { user, updateUser } = useUserStore();
+  const { user, updateUser: updateStoreUser } = useUserStore();
 
   if (!user) return <Typography variant="h6">Debes iniciar sesión para ver tu perfil.</Typography>;
 
-  const handleUpdate = (updates: { alertThreshold: number; alertEnabled: boolean; currencyPreference: string }) => {
-    updateUser(updates); // Actualiza el store
+  const handleUpdate = async (updates: { alertThreshold: number; alertEnabled: boolean; currencyPreference: string }) => {
+    try {
+      if (user.id) {
+        await updateUser(user.id, updates); // Actualiza en el backend
+        updateStoreUser(updates); // Actualiza el store local
+      }
+    } catch (error) {
+      console.error("Error updating user in backend:", error);
+    }
   };
 
   return (

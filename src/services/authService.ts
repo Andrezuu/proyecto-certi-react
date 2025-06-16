@@ -1,5 +1,6 @@
 // src/services/authService.ts
 import jsonServerInstance from "../api/jsonInstance";
+import type { User } from "../interface/userInterface";
 
 export const login = async (email: string, password: string) => {
   const response = await jsonServerInstance.get("/users", {
@@ -30,7 +31,7 @@ export const register = async (
       token,
       alertThreshold: 0,
       alertEnabled: false,
-      role, // <-- usa el parámetro
+      role, // Usa el parámetro
     };
 
     const response = await jsonServerInstance.post(`/users`, newUser);
@@ -38,5 +39,15 @@ export const register = async (
   } catch (error) {
     console.error("Error en el registro:", error);
     return null;
+  }
+};
+
+export const updateUser = async (userId: string, updates: Partial<User>) => {
+  try {
+    const response = await jsonServerInstance.patch(`/users/${userId}`, updates);
+    return response.data;
+  } catch (error) {
+    console.error("Error updating user:", error);
+    throw error;
   }
 };
