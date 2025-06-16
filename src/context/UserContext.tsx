@@ -32,6 +32,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const storedUser = getItem("user");
     const storedToken = getItem("token");
+    
     console.log("Restoring session - user:", storedUser, "token:", storedToken); // Depuración
     if (
       storedUser &&

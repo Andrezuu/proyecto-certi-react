@@ -11,10 +11,14 @@ const CotizacionesPage = () => {
   const { quotes, setQuotes, markVolatility } = useQuotes();
   const { user } = useUserContext();
 
+  // 1️⃣ Obtener cotizaciones y aplicar volatilidad en un solo setQuotes
   useEffect(() => {
     const fetchData = async () => {
       const official = await fetchOfficialRates();
       const parallel = await fetchParallelRates();
+
+      console.log("👀 Official rates:", official);
+      console.log("👀 Parallel rates:", parallel);
 
       const merged = parallel.map((house) => {
         const o = official
@@ -31,20 +35,25 @@ const CotizacionesPage = () => {
         };
       });
 
-      setQuotes(merged);
+      console.log("💡 Cotizaciones combinadas:", merged);
 
-      if (typeof user?.alertThreshold === "number") {
-        console.log("Umbral de alerta:", user.alertThreshold);
-        markVolatility(user.alertThreshold);
-      } else {
-        console.log("Alerta no habilitada o umbral inválido");
+      let finalQuotes = merged;
+      if (user?.alertThreshold != null) {
+        finalQuotes = markVolatility(merged, user.alertThreshold);
       }
+
+      setQuotes(finalQuotes);
     };
 
     if (user) {
       fetchData();
     }
-  }, [user]);
+  }, [user, setQuotes, markVolatility]);
+
+  // Solo para debug: log de quotes actualizado
+  useEffect(() => {
+    console.log("🧠 Estado quotes actualizado:", quotes);
+  }, [quotes]);
 
   if (!user) {
     return (
@@ -70,7 +79,9 @@ const CotizacionesPage = () => {
 
       <Typography variant="body1" sx={{ mb: 3 }}>
         Se muestran las tasas oficiales y paralelas según cada casa de cambio.
-        Si la diferencia entre ambas supera tu umbral de alerta (<strong>{user.alertThreshold}%</strong>), se marcará como una cotización <strong>volátil</strong>.
+        Si la diferencia entre ambas supera tu umbral de alerta (
+        <strong>{user.alertThreshold}%</strong>), se marcará como una cotización{" "}
+        <strong>volátil</strong>.
       </Typography>
 
       {alertQuotes.length > 0 && (
@@ -89,7 +100,8 @@ const CotizacionesPage = () => {
           </Typography>
           {alertQuotes.map((q, i) => (
             <Typography key={i}>
-              - {q.name} ({q.currency}): Diferencia supera el umbral ({user.alertThreshold}%)
+              - {q.name} ({q.currency}): Diferencia supera el umbral (
+              {user.alertThreshold}%)
             </Typography>
           ))}
         </Box>
@@ -107,12 +119,18 @@ const CotizacionesPage = () => {
                   elevation={4}
                   sx={{
                     p: 2,
-                    borderLeft: q.volatile ? "5px solid red" : "5px solid #1976d2",
+                    borderLeft: q.volatile
+                      ? "5px solid red"
+                      : "5px solid #1976d2",
                     backgroundColor: q.volatile ? "#fff5f5" : "#f4f6f8",
                     transition: "0.3s",
                   }}
                 >
-                  <Box display="flex" justifyContent="space-between" alignItems="center">
+                  <Box
+                    display="flex"
+                    justifyContent="space-between"
+                    alignItems="center"
+                  >
                     <Typography variant="h6">{q.name}</Typography>
                     {q.volatile && (
                       <Chip
@@ -130,20 +148,21 @@ const CotizacionesPage = () => {
                   <Divider sx={{ my: 1 }} />
 
                   {q.official && (
-                  <>
-                    <Typography variant="subtitle2" color="text.secondary">
-                      Oficial (
-                      {q.official.date && !isNaN(new Date(q.official.date).getTime())
-                        ? new Date(q.official.date).toLocaleDateString()
-                        : "Sin fecha"}
-                      )
-                    </Typography>
-                    <Typography>
-                      Compra: <strong>{q.official.buy}</strong> | Venta:{" "}
-                      <strong>{q.official.sell}</strong>
-                    </Typography>
-                  </>
-                )}
+                    <>
+                      <Typography variant="subtitle2" color="text.secondary">
+                        Oficial (
+                        {q.official.date &&
+                        !isNaN(new Date(q.official.date).getTime())
+                          ? new Date(q.official.date).toLocaleDateString()
+                          : "Sin fecha"}
+                        )
+                      </Typography>
+                      <Typography>
+                        Compra: <strong>{q.official.buy}</strong> | Venta:{" "}
+                        <strong>{q.official.sell}</strong>
+                      </Typography>
+                    </>
+                  )}
 
                   <Typography variant="subtitle2" color="text.secondary" mt={1}>
                     Paralelo (actual)

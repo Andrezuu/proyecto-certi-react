@@ -4,7 +4,7 @@ type Quote = {
   name: string;
   address: string;
   currency: string;
-  official: { buy: number; sell: number };
+  official: { buy: number; sell: number; date?: string };
   parallel: { buy: number; sell: number };
   volatile: boolean;
 };

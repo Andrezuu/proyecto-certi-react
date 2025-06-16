@@ -30,7 +30,7 @@
       "lastName": "User2",
       "token": "abc123",
       "alertThreshold": 7.5,
-      "alertEnabled": false,
+      "alertEnabled": true,
       "role": "admin"
     },
     {
@@ -197,9 +197,9 @@
       "id": "4555",
       "name": "PRUEBAS REGLAS",
       "address": "casi casi por mafalda",
-      "currency": "bolivianos",
-      "buy": 310,
-      "sell": 90,
+      "currency": "EUR",
+      "buy": 8,
+      "sell": 9,
       "lat": -16.54366290177747,
       "lng": -68.07818472933916,
       "commission": 2,

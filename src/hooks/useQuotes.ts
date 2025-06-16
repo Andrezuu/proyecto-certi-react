@@ -5,16 +5,19 @@ export const useQuotes = () => {
   const setQuotes = useQuotesStore((state) => state.setQuotes);
   const updateQuote = useQuotesStore((state) => state.updateQuote);
 
-  const markVolatility = (thresholdPercent: number) => {
-    const updated = quotes.map((quote) => {
-      if (!quote.official) {
+  // Ahora recibe el array y threshold, y devuelve el array modificado
+  const markVolatility = (quotesArray: typeof quotes, thresholdPercent: number) => {
+    const updated = quotesArray.map((quote) => {
+      const official = quote.official;
+
+      if (!official || official.buy == null || official.sell == null) {
         return { ...quote, volatile: false };
       }
 
       const sellDiffPercent =
-        (Math.abs(quote.parallel.sell - quote.official.sell) / quote.official.sell) * 100;
+        (Math.abs(quote.parallel.sell - official.sell) / official.sell) * 100;
       const buyDiffPercent =
-        (Math.abs(quote.parallel.buy - quote.official.buy) / quote.official.buy) * 100;
+        (Math.abs(quote.parallel.buy - official.buy) / official.buy) * 100;
 
       const isVolatile =
         sellDiffPercent > thresholdPercent || buyDiffPercent > thresholdPercent;
@@ -25,19 +28,22 @@ export const useQuotes = () => {
       };
     });
 
-    // ✅ Mueve el console.table aquí
     console.table(
       updated.map((q) => ({
         name: q.name,
         sellDiff:
-          (Math.abs(q.parallel.sell - q.official.sell) / q.official.sell) * 100,
+          q.official && q.official.sell
+            ? (Math.abs(q.parallel.sell - q.official.sell) / q.official.sell) * 100
+            : "N/A",
         buyDiff:
-          (Math.abs(q.parallel.buy - q.official.buy) / q.official.buy) * 100,
+          q.official && q.official.buy
+            ? (Math.abs(q.parallel.buy - q.official.buy) / q.official.buy) * 100
+            : "N/A",
         volatile: q.volatile,
       }))
     );
 
-    setQuotes(updated);
+    return updated;
   };
 
   return { quotes, setQuotes, updateQuote, markVolatility };
