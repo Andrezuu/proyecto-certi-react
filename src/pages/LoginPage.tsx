@@ -1,4 +1,10 @@
-// src/pages/LoginPage.tsx
+import {
+  AccountCircle,
+  Password,
+  VisibilityOff,
+  Visibility,
+} from "@mui/icons-material";
+import { Link as RouterLink } from "react-router-dom";
 import {
   Box,
   Button,
@@ -9,46 +15,13 @@ import {
   Typography,
   Link,
 } from "@mui/material";
-import { AccountCircle, Password } from "@mui/icons-material";
-import * as yup from "yup";
-import { useFormik } from "formik";
-import { login } from "../services/authService";
-import { useNavigate, Link as RouterLink } from "react-router-dom";
-import Toast from "../components/toast";
-import { useState } from "react";
-import { getItem, setItem } from "../helpers/localStorage";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useUserContext } from "../context/UserContext";
 
-const loginSchema = yup.object({
-  email: yup.string().email("Email inválido").required("Requerido"),
-  password: yup.string().min(6).required("Requerido"),
-});
+import Toast from "../components/toast";
+import { useAuth } from "../hooks/useAuth";
 
 export default function LoginPage() {
-  const { setUser } = useUserContext();
-  const navigate = useNavigate();
-  const [loginError, setLoginError] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const formik = useFormik({
-    initialValues: { email: "", password: "" },
-    validationSchema: loginSchema,
-    onSubmit: async (values) => {
-      const response = await login(values.email, values.password);
-      if (!response) {
-        setLoginError(true);
-        formik.resetForm();
-        return;
-      }
-
-      setItem("token", response.token);
-      setItem("user", response);
-      setUser(response); // <- actualiza el contexto
-
-      navigate("/app/dashboard", { replace: true });
-    },
-  });
-
+  const { formik, loginError, setLoginError, showPassword, setShowPassword } =
+    useAuth();
   return (
     <Container maxWidth="xs">
       <Toast

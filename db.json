@@ -8,7 +8,8 @@
       "lastName": "User",
       "token": "abc123",
       "alertThreshold": 10.07,
-      "alertEnabled": true
+      "alertEnabled": true,
+      "role": "admin"
     },
     {
       "id": "2",
@@ -18,7 +19,8 @@
       "lastName": "User",
       "token": "def456",
       "alertThreshold": 7.2,
-      "alertEnabled": false
+      "alertEnabled": false,
+      "role": "client"
     },
     {
       "id": "3",
@@ -28,7 +30,8 @@
       "lastName": "User2",
       "token": "abc123",
       "alertThreshold": 7.5,
-      "alertEnabled": false
+      "alertEnabled": false,
+      "role": "admin"
     },
     {
       "id": "d17a",
@@ -37,7 +40,31 @@
       "name": "Luis Mateo",
       "lastName": "Michel Flores",
       "token": "a42oj09rp4vmbflieor",
-      "alertThreshold": 0
+      "alertThreshold": 0,
+      "alertEnabled": false,
+      "role": "client"
+    },
+    {
+      "id": "9a39",
+      "email": "alice@example.com",
+      "password": "hola1234",
+      "name": "Luciano",
+      "lastName": "Vargas Ramirez",
+      "token": "9dt71obmebembygdqjm",
+      "alertThreshold": 0,
+      "alertEnabled": false,
+      "role": "client"
+    },
+    {
+      "id": "12e2",
+      "email": "hola@hola.com",
+      "password": "hola1234",
+      "name": "Luciano",
+      "lastName": "Vargas Ramirez",
+      "token": "qzv3m6pdzz9mbyhsixr",
+      "alertThreshold": 0,
+      "alertEnabled": false,
+      "role": "client"
     }
   ],
   "exchangeHouses": [

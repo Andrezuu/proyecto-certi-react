@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Button,
   Box,
@@ -13,13 +13,17 @@ import type { IExchangeHouse } from "../models/IExchangeHouse";
 import ExchangeHouseForm from "../components/ExchangeHouseForm";
 import ExchangeHouseTable from "../components/ExchangeHouseTable";
 import { useExchangeManagement } from "../hooks/useExchangeManagement";
+import { useUserStore } from "../store/userStore";
 
-const AdminPage = () => {
+const CasasAdminPage = () => {
+  const user = useUserStore((state) => state.user);
+  const isAdmin = useUserStore((state) => state.isAdmin);
   const {
     casas,
     crearCasa,
     actualizarCasa,
     eliminarCasa,
+    fetchCasas,
   } = useExchangeManagement();
 
   const [open, setOpen] = useState(false);
@@ -27,6 +31,15 @@ const AdminPage = () => {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [selectedCasaId, setSelectedCasaId] = useState<number | null>(null);
 
+  if (!user || !isAdmin()) {
+    console.log("Acceso denegado, redirigiendo a /unauthorized. User:", user);
+    return <Navigate to="/unauthorized" replace />;
+  }
+
+  useEffect(() => {
+    fetchCasas();
+  }, []);
+    
   const handleOpen = (casa: IExchangeHouse | null = null) => {
     setEditingCasa(casa);
     setOpen(true);
@@ -80,7 +93,6 @@ const AdminPage = () => {
         open={open}
         onClose={handleClose}
         onSubmit={handleSubmit}
-        
         initialValues={
           editingCasa || {
             name: "",
@@ -119,4 +131,4 @@ const AdminPage = () => {
   );
 };
 
-export default AdminPage;
+export default CasasAdminPage;

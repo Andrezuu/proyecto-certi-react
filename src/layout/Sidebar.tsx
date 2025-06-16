@@ -1,3 +1,4 @@
+// src/components/Sidebar.tsx
 import {
   Box,
   Drawer,
@@ -14,15 +15,16 @@ import {
   Home as HomeIcon,
   Map as MapIcon,
   BarChart as ChartIcon,
-  Notifications as NotificationsIcon,
   History as HistoryIcon,
   AdminPanelSettings as AdminIcon,
   Logout as LogoutIcon,
   ChevronLeft as ChevronLeftIcon,
+  Person as PersonIcon, // Icono para Perfil
 } from "@mui/icons-material";
 import { useNavigate, useLocation } from "react-router-dom";
 import { clearStorage } from "../helpers/localStorage";
 import { useEffect } from "react";
+import { useUserStore } from "../store/userStore";
 
 const drawerWidth = 240;
 
@@ -39,22 +41,22 @@ export default function Sidebar({
 }: SidebarProps) {
   const navigate = useNavigate();
   const location = useLocation();
+  const isAdmin = useUserStore((state) => state.isAdmin);
 
   const menuItems = [
     { text: "Dashboard", path: "/app/dashboard", icon: <HomeIcon /> },
     { text: "Mapa", path: "/app/mapa", icon: <MapIcon /> },
     { text: "Cotizaciones", path: "/app/cotizaciones", icon: <ChartIcon /> },
-    { text: "Alerta", path: "/app/alerta", icon: <NotificationsIcon /> },
     { text: "Historial", path: "/app/historial", icon: <HistoryIcon /> },
-    { text: "Casas Admin", path: "/app/admin/casas", icon: <AdminIcon /> },
+    ...(isAdmin() ? [{ text: "Casas Admin", path: "/app/admin/casas", icon: <AdminIcon /> }] : []),
+    { text: "Perfil", path: "/app/profile", icon: <PersonIcon /> }, // Nuevo item Perfil
   ];
 
   useEffect(() => {
     if (isMobile && mobileOpen) {
       handleDrawerToggle();
     }
-
-  }, [location.pathname]);
+  }, [location.pathname, isMobile, mobileOpen, handleDrawerToggle]);
 
   return (
     <Drawer
