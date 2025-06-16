@@ -10,7 +10,7 @@
       "alertThreshold": 10.07,
       "alertEnabled": true,
       "role": "admin",
-      "wallet": 989
+      "wallet": 331
     },
     {
       "id": "2",
@@ -22,7 +22,7 @@
       "alertThreshold": 7.2,
       "alertEnabled": false,
       "role": "client",
-      "wallet": 511
+      "wallet": 1158
     },
     {
       "id": "3",
@@ -34,7 +34,7 @@
       "alertThreshold": 7.5,
       "alertEnabled": false,
       "role": "admin",
-      "wallet": 750
+      "wallet": 761
     },
     {
       "id": "d17a",
@@ -350,7 +350,9 @@
       "type": "Compra",
       "currency": "USD",
       "time": "2025-06-15T12:00:00Z",
+      "rate": 8.23,
       "senderId": "1",
+      "exchangeHouseId": "Casa ACME",
       "receiverId": "2"
     },
     {
@@ -359,7 +361,9 @@
       "type": "Venta",
       "currency": "USD",
       "time": "2025-06-15T14:00:00Z",
+      "rate": 9.23,
       "senderId": "2",
+      "exchangeHouseId": "Casa de cambios Armella",
       "receiverId": "1"
     },
     {
@@ -367,288 +371,55 @@
       "amount": 111,
       "type": "Compra",
       "currency": "USD",
+      "rate": 7.23,
       "receiverId": "2",
       "senderId": "1",
+      "exchangeHouseId": "Casa ACME",
       "time": "2025-06-16T04:18:05.139Z"
     },
     {
-      "id": "e148",
+      "id": "4cb9",
+      "amount": 123,
+      "type": "Compra",
+      "currency": "USD",
+      "receiverId": "2",
+      "exchangeHouseId": "Casa ACME",
+      "rate": 12.3,
+      "senderId": "1",
+      "time": "2025-06-16T16:10:56.243Z"
+    },
+    {
+      "id": "c553",
+      "amount": 500,
+      "type": "Venta",
+      "currency": "USD",
+      "receiverId": "2",
+      "exchangeHouseId": "Casa de Cambio EFI",
+      "rate": 15.2,
+      "senderId": "1",
+      "time": "2025-06-16T16:30:49.809Z"
+    },
+    {
+      "id": "304d",
       "amount": 11,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "2",
-      "time": "2025-06-16T04:37:47.039Z"
-    },
-    {
-      "id": "b7f9",
-      "amount": 12,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "d17a",
-      "senderId": "2",
-      "time": "2025-06-16T04:47:45.989Z"
-    },
-    {
-      "id": "5d6b",
-      "amount": 12,
-      "type": "Compra",
+      "type": "Venta",
       "currency": "USD",
       "receiverId": "3",
-      "senderId": "2",
-      "time": "2025-06-16T04:49:03.279Z"
+      "exchangeHouseId": "INTERNATIONAL MONEY EXCHANGE SRL",
+      "rate": 12,
+      "senderId": "1",
+      "time": "2025-06-16T16:45:04.247Z"
     },
     {
-      "id": "ebd2",
-      "amount": 11,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "2",
-      "time": "2025-06-16T04:50:14.763Z"
-    },
-    {
-      "id": "a2d7",
-      "amount": 1,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "2",
-      "time": "2025-06-16T04:50:58.537Z"
-    },
-    {
-      "id": "c972",
-      "amount": 12,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "2",
-      "time": "2025-06-16T04:51:24.096Z"
-    },
-    {
-      "id": "053d",
-      "amount": 12,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "2",
-      "time": "2025-06-16T04:52:45.832Z"
-    },
-    {
-      "id": "3428",
-      "amount": 1,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "2",
-      "time": "2025-06-16T04:53:47.127Z"
-    },
-    {
-      "id": "ce20",
-      "amount": 11,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "2",
-      "time": "2025-06-16T04:56:22.032Z"
-    },
-    {
-      "id": "1f44",
-      "amount": 1,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "2",
-      "time": "2025-06-16T04:56:37.226Z"
-    },
-    {
-      "id": "61f3",
-      "amount": 11,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "2",
-      "time": "2025-06-16T04:57:37.973Z"
-    },
-    {
-      "id": "4cf3",
-      "amount": 11,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "2",
-      "time": "2025-06-16T04:58:13.632Z"
-    },
-    {
-      "id": "afc4",
-      "amount": 1,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "2",
-      "time": "2025-06-16T05:00:05.068Z"
-    },
-    {
-      "id": "f6b1",
-      "amount": 11,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "2",
-      "time": "2025-06-16T05:00:59.610Z"
-    },
-    {
-      "id": "94ae",
-      "amount": 11,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "2",
-      "time": "2025-06-16T05:03:16.596Z"
-    },
-    {
-      "id": "475a",
-      "amount": 11,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "2",
-      "time": "2025-06-16T05:04:49.751Z"
-    },
-    {
-      "id": "4afe",
-      "amount": 12,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "3",
-      "senderId": "2",
-      "time": "2025-06-16T05:05:56.493Z"
-    },
-    {
-      "id": "ae65",
-      "amount": 11,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "2",
-      "time": "2025-06-16T05:07:42.466Z"
-    },
-    {
-      "id": "d752",
-      "amount": 12,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "2",
-      "time": "2025-06-16T05:09:58.312Z"
-    },
-    {
-      "id": "41d6",
-      "amount": 12,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "2",
-      "time": "2025-06-16T05:11:19.137Z"
-    },
-    {
-      "id": "faab",
-      "amount": 12,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "2",
-      "time": "2025-06-16T05:12:04.606Z"
-    },
-    {
-      "id": "53ed",
-      "amount": 111,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "2",
-      "time": "2025-06-16T05:12:17.825Z"
-    },
-    {
-      "id": "3e11",
+      "id": "c8e3",
       "amount": 12,
       "type": "Compra",
       "currency": "USD",
       "receiverId": "2",
+      "exchangeHouseId": "Unitransfer SRL",
+      "rate": 12,
       "senderId": "1",
-      "time": "2025-06-16T05:13:33.558Z"
-    },
-    {
-      "id": "bbac",
-      "amount": 11,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "1",
-      "time": "2025-06-16T05:14:22.594Z"
-    },
-    {
-      "id": "a7e5",
-      "amount": 11,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "1",
-      "time": "2025-06-16T05:14:36.959Z"
-    },
-    {
-      "id": "9861",
-      "amount": 11,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "1",
-      "senderId": "1",
-      "time": "2025-06-16T05:14:47.472Z"
-    },
-    {
-      "id": "47c6",
-      "amount": 12,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "2",
-      "senderId": "1",
-      "time": "2025-06-16T05:15:30.907Z"
-    },
-    {
-      "id": "3aa5",
-      "amount": 11,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "2",
-      "senderId": "1",
-      "time": "2025-06-16T05:16:32.801Z"
-    },
-    {
-      "id": "f64b",
-      "amount": 11,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "3",
-      "senderId": "1",
-      "time": "2025-06-16T05:16:47.223Z"
-    },
-    {
-      "id": "5187",
-      "amount": 12,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "2",
-      "senderId": "1",
-      "time": "2025-06-16T05:17:04.501Z"
-    },
-    {
-      "id": "6e49",
-      "amount": 12,
-      "type": "Compra",
-      "currency": "USD",
-      "receiverId": "2",
-      "senderId": "1",
-      "time": "2025-06-16T05:20:00.610Z"
+      "time": "2025-06-16T16:46:19.013Z"
     }
   ]
 }

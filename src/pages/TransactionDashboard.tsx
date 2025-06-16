@@ -1,10 +1,8 @@
 import { Box, Grid, Paper, Typography } from "@mui/material";
-import { useTransactions } from "../hooks/useTransactions";
 import TransactionMetrics from "../components/TransactionMetrics";
 import TransactionChart from "../components/TransactionChart";
 
 const TransaccionDashboardPage = () => {
-  const { transactions } = useTransactions();
 
   return (
     <Box sx={{ padding: 4 }}>
@@ -14,10 +12,10 @@ const TransaccionDashboardPage = () => {
 
       <Grid container spacing={3}>
         <Grid size={{ xs: 12 }}>
-          <TransactionMetrics transactions={transactions} />
+          <TransactionMetrics />
         </Grid>
         <Grid size={{ xs: 12 }}>
-          <Paper elevation={2} sx={{ p: 2 }}>
+          <Paper elevation={2} sx={{ p: 4 }}>
             <TransactionChart />
           </Paper>
         </Grid>

@@ -52,7 +52,7 @@ export default function Sidebar({
     ...(isAdmin() ? [{ text: "Casas Admin", path: "/app/admin/casas", icon: <AdminIcon /> }] : []),
     { text: "Perfil", path: "/app/profile", icon: <PersonIcon /> }, // Nuevo item Perfil
     { text: "Transacciones", path: "/app/transacciones", icon: <CompareArrowsIcon /> },
-    { text: "Transacciones Dashboard", path: "/app/transacciones-dashboard", icon: <CompareArrowsIcon/> },
+    { text: "Transacciones Dashboard", path: "/app/transacciones-dashboard", icon: <ChartIcon/> },
   ];
 
   useEffect(() => {

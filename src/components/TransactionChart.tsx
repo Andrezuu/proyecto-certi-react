@@ -10,32 +10,48 @@ import {
   Legend,
 } from "recharts";
 import { useTransactions } from "../hooks/useTransactions";
+import { useQuotesStore } from "../store/quotesStore";
 
 const TransactionChart = () => {
-  const { filteredTransactions, dateRange, setDateRange } = useTransactions();
+  const { filteredTransactions, dateRange, setDateRange, selectedExchange, setSelectedExchange } = useTransactions();
+  const exchangeHouses = useQuotesStore((state) => state.quotes);
 
   return (
-    <Box sx={{ width: "100%", height: 400 , p: 2}}>
+    <Box sx={{ width: "100%", height: 400, p: 2 }}>
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          mb: 2
         }}
       >
         <Typography variant="h6">Volumen de Transacciones</Typography>
-        <FormControl size="small" sx={{ minWidth: 120 }}>
-          <Select
-            value={dateRange}
-            onChange={(e) =>
-              setDateRange(e.target.value as "day" | "week" | "month")
-            }
-          >
-            <MenuItem value="day">Hoy</MenuItem>
-            <MenuItem value="week">Última semana</MenuItem>
-            <MenuItem value="month">Último mes</MenuItem>
-          </Select>
-        </FormControl>
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          <FormControl size="small" sx={{ minWidth: 150 }}>
+            <Select
+              value={selectedExchange}
+              onChange={(e) => setSelectedExchange(e.target.value)}
+            >
+              <MenuItem value="all">Todas las casas</MenuItem>
+              {exchangeHouses.map((house) => (
+                <MenuItem key={house.name} value={house.name}>
+                  {house.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl size="small" sx={{ minWidth: 120 }}>
+            <Select
+              value={dateRange}
+              onChange={(e) => setDateRange(e.target.value as "day" | "week" | "month")}
+            >
+              <MenuItem value="day">Hoy</MenuItem>
+              <MenuItem value="week">Última semana</MenuItem>
+              <MenuItem value="month">Último mes</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
       </Box>
 
       <ResponsiveContainer>

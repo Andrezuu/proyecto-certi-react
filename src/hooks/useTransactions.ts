@@ -12,20 +12,35 @@ import { getUsers, updateWallets } from "../services/userService";
 export const useTransactions = () => {
   const [transactions, setTransactions] = useState([] as ITransaction[]);
   const [users, setUsers] = useState([] as User[]);
-  const [filteredTransactions, setFilteredTransactions] = useState(
-    [] as ITransaction[]
-  );
-  const [dateRange, setDateRange] = useState("day");
+  const [dateRange, setDateRange] = useState<"day" | "week" | "month">("month");
+  const [selectedExchange, setSelectedExchange] = useState("all");
   const [openForm, setOpenForm] = useState(false);
+  const [filteredTransactions, setFilteredTransactions] =
+    useState(transactions);
+
   const { user, setUser } = useUserContext();
-  const totalVolume = transactions.reduce((acc, t) => acc + t.amount, 0);
-  const dailyVolume = transactions
-    .filter((t) => {
-      const today = new Date();
-      const txDate = new Date(t.time);
-      return today.toDateString() === txDate.toDateString();
-    })
-    .reduce((acc, t) => acc + t.amount, 0);
+
+  const metrics = () => {
+    return {
+      totalVolume: transactions.reduce((acc, t) => acc + t.amount, 0),
+
+      dailyVolume: transactions
+        .filter((t) => {
+          const today = new Date();
+          const txDate = new Date(t.time);
+          return today.toDateString() === txDate.toDateString();
+        })
+        .reduce((acc, t) => acc + t.amount, 0),
+
+      profitLoss: transactions.reduce((acc, t) => {
+        return t.type === "Venta" ? acc + t.amount : acc - t.amount;
+      }, 0),
+
+      averageRate: transactions.length
+        ? transactions.reduce((acc, t) => acc + t.rate, 0) / transactions.length
+        : 0,
+    };
+  };
 
   const transactionSchema = Yup.object({
     amount: Yup.number()
@@ -39,12 +54,18 @@ export const useTransactions = () => {
       )
       .required("La cantidad es requerida"),
     type: Yup.string()
-      .oneOf(["Compra", "Venta"], "El tipo debe ser 'compra' o 'venta'")
+      .oneOf(["Compra", "Venta"], "El tipo debe ser 'Compra' o 'Venta'")
       .required("El tipo de transacción es requerido"),
     currency: Yup.string()
       .max(10, "La moneda no puede exceder 10 caracteres")
       .required("La moneda es requerida"),
     receiverId: Yup.string().required("El receptor es requerido"),
+    rate: Yup.number()
+      .typeError("Cotización inválida")
+      .min(0.1, "La cotizacion debe ser mayor a 0")
+      .max(10000000, "La cotizacion no debe sobrepasar 10000000")
+      .required("Cotización requerida"),
+    exchangeHouseId: Yup.string().required("Casa de cambio requerida"),
   });
 
   const formik = useFormik({
@@ -71,8 +92,8 @@ export const useTransactions = () => {
   }, []);
 
   useEffect(() => {
-    filterTransactions(dateRange);
-  }, [transactions, dateRange]);
+    getFilteredTransactions();
+  }, [transactions, dateRange, selectedExchange]);
 
   const fetchUsers = async () => {
     try {
@@ -116,10 +137,16 @@ export const useTransactions = () => {
     formik.resetForm();
   };
 
-  const filterTransactions = (dateRange: string) => {
+  const getFilteredTransactions = () => {
+    let filtered = [...transactions];
+
+    if (selectedExchange !== "all") {
+      filtered = filtered.filter((t) => t.exchangeHouseId === selectedExchange);
+    }
+
     const now = new Date();
-    const filtered = transactions.filter((transaction) => {
-      const txDate = new Date(transaction.time);
+    filtered = filtered.filter((t) => {
+      const txDate = new Date(t.time);
       switch (dateRange) {
         case "day":
           return txDate.toDateString() === now.toDateString();
@@ -134,21 +161,16 @@ export const useTransactions = () => {
       }
     });
 
-    const groupedData = filtered.reduce((acc, transaction) => {
-      const date = new Date(transaction.time).toLocaleDateString();
+    const groupedData = filtered.reduce((acc, tx) => {
+      const date = new Date(tx.time).toLocaleDateString();
       if (!acc[date]) {
-        acc[date] = {
-          date,
-          total: 0,
-          compras: 0,
-          ventas: 0,
-        };
+        acc[date] = { date, total: 0, compras: 0, ventas: 0 };
       }
-      acc[date].total += transaction.amount;
-      if (transaction.type === "Compra") {
-        acc[date].compras += transaction.amount;
+      acc[date].total += tx.amount;
+      if (tx.type === "Compra") {
+        acc[date].compras += tx.amount;
       } else {
-        acc[date].ventas += transaction.amount;
+        acc[date].ventas += tx.amount;
       }
       return acc;
     }, {} as Record<string, any>);
@@ -168,7 +190,8 @@ export const useTransactions = () => {
     user,
     users,
     formik,
-    totalVolume,
-    dailyVolume,
+    metrics,
+    selectedExchange,
+    setSelectedExchange,
   };
 };

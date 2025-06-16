@@ -11,8 +11,8 @@ import CasasAdminPage from "../pages/CasasAdminPage";
 import ProfilePage from "../pages/ProfilePage";
 import UnauthorizedPage from "../pages/UnauthorizedPage"; 
 import ProtectedRoutes from "../guards/ProtectedRoutes";
-import TransactionsPage from "../pages/TransaccionPage";
-import TransaccionDashboardPage from "../pages/TransaccionDashboard";
+import TransactionsPage from "../pages/TransactionPage";
+import TransaccionDashboardPage from "../pages/TransactionDashboard";
 
 export const AppRoutes = () => {
   return (

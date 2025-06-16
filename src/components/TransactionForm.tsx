@@ -12,6 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useUserContext, type User } from "../context/UserContext";
+import { useQuotesStore } from "../store/quotesStore";
 
 interface TransactionFormProps {
   open: boolean;
@@ -26,6 +27,8 @@ const TransactionForm = ({
   users,
 }: TransactionFormProps) => {
   const { user } = useUserContext();
+  const exchangeHouses = useQuotesStore((state) => state.quotes);
+
   return (
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle>Realizar Transacción</DialogTitle>
@@ -88,6 +91,36 @@ const TransactionForm = ({
               ))}
             </Select>
           </FormControl>
+          <FormControl fullWidth margin="dense">
+            <InputLabel>Casa de Cambio</InputLabel>
+            <Select
+              name="exchangeHouseId"
+              value={formik.values.exchangeHouseId}
+              onChange={formik.handleChange}
+              error={
+                formik.touched.exchangeHouseId &&
+                Boolean(formik.errors.exchangeHouseId)
+              }
+            >
+              {exchangeHouses.map((house) => (
+                <MenuItem key={house.name} value={house.name}>
+                  {house.name} - Compra: {house.official.buy} / Venta:{" "}
+                  {house.official.sell}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <TextField
+            fullWidth
+            margin="dense"
+            name="rate"
+            label="Cotización"
+            type="number"
+            value={formik.values.rate}
+            onChange={formik.handleChange}
+            error={formik.touched.rate && Boolean(formik.errors.rate)}
+            helperText={formik.touched.rate && formik.errors.rate}
+          />
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={handleClose} color="info">
