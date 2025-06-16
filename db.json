@@ -7,7 +7,7 @@
       "name": "Admin",
       "lastName": "User",
       "token": "abc123",
-      "alertThreshold": 10,
+      "alertThreshold": 10.07,
       "alertEnabled": true
     },
     {
@@ -157,9 +157,29 @@
       "address": "Postgrado",
       "currency": "EUR",
       "buy": 10,
-      "sell": 11,
+      "sell": 16,
       "lat": -16.500420453362533,
-      "lng": -68.15284966223214
+      "lng": -68.15284966223214,
+      "commission": 2,
+      "minimumCapital": 10,
+      "startTime": "05:11",
+      "operatingHours": "05:11 - 19:00",
+      "endTime": "19:00"
+    },
+    {
+      "id": "4555",
+      "name": "PRUEBAS REGLAS",
+      "address": "casi casi por mafalda",
+      "currency": "bolivianos",
+      "buy": 310,
+      "sell": 90,
+      "lat": -16.54366290177747,
+      "lng": -68.07818472933916,
+      "commission": 2,
+      "minimumCapital": 70,
+      "startTime": "09:00",
+      "endTime": "18:00",
+      "operatingHours": "09:00 - 18:00"
     }
   ],
   "officialExchangeRate": [

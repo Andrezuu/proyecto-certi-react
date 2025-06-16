@@ -130,16 +130,20 @@ const CotizacionesPage = () => {
                   <Divider sx={{ my: 1 }} />
 
                   {q.official && (
-                    <>
-                      <Typography variant="subtitle2" color="text.secondary">
-                        Oficial ({new Date(q.official.date).toLocaleDateString()})
-                      </Typography>
-                      <Typography>
-                        Compra: <strong>{q.official.buy}</strong> | Venta:{" "}
-                        <strong>{q.official.sell}</strong>
-                      </Typography>
-                    </>
-                  )}
+                  <>
+                    <Typography variant="subtitle2" color="text.secondary">
+                      Oficial (
+                      {q.official.date && !isNaN(new Date(q.official.date).getTime())
+                        ? new Date(q.official.date).toLocaleDateString()
+                        : "Sin fecha"}
+                      )
+                    </Typography>
+                    <Typography>
+                      Compra: <strong>{q.official.buy}</strong> | Venta:{" "}
+                      <strong>{q.official.sell}</strong>
+                    </Typography>
+                  </>
+                )}
 
                   <Typography variant="subtitle2" color="text.secondary" mt={1}>
                     Paralelo (actual)

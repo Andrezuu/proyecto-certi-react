@@ -7,4 +7,10 @@ export interface IExchangeHouse {
   currency: string;
   buy: number;
   sell: number;
+  commission: number;
+  minimumCapital: number;
+  startTime: string,
+  endTime: string,
+  operatingHours: string,
+
 }

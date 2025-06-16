@@ -1,30 +1,31 @@
-import { useEffect, useState } from "react";
-import { Button, Box, Typography, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import { useState } from "react";
 import {
-  createExchangeHouse,
-  deleteExchangeHouse,
-  getExchangeHouses,
-  updateExchangeHouse,
-} from "../services/exchangeHouseService";
+  Button,
+  Box,
+  Typography,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@mui/material";
 import type { IExchangeHouse } from "../models/IExchangeHouse";
 import ExchangeHouseForm from "../components/ExchangeHouseForm";
 import ExchangeHouseTable from "../components/ExchangeHouseTable";
+import { useExchangeManagement } from "../hooks/useExchangeManagement";
 
 const AdminPage = () => {
-  const [casas, setCasas] = useState<IExchangeHouse[]>([]);
+  const {
+    casas,
+    crearCasa,
+    actualizarCasa,
+    eliminarCasa,
+  } = useExchangeManagement();
+
   const [open, setOpen] = useState(false);
   const [editingCasa, setEditingCasa] = useState<IExchangeHouse | null>(null);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [selectedCasaId, setSelectedCasaId] = useState<number | null>(null);
-
-  const fetchCasas = async () => {
-    const response = await getExchangeHouses();
-    setCasas(response);
-  };
-
-  useEffect(() => {
-    fetchCasas();
-  }, []);
 
   const handleOpen = (casa: IExchangeHouse | null = null) => {
     setEditingCasa(casa);
@@ -38,17 +39,16 @@ const AdminPage = () => {
 
   const handleSubmit = async (values: IExchangeHouse) => {
     if (editingCasa) {
-      await updateExchangeHouse(values, editingCasa.id);
+      await actualizarCasa(values, editingCasa.id!);
     } else {
-      await createExchangeHouse(values);
+      await crearCasa(values);
     }
-    fetchCasas();
+    handleClose();
   };
 
   const handleDelete = async () => {
     if (selectedCasaId !== null) {
-      await deleteExchangeHouse(selectedCasaId);
-      fetchCasas();
+      await eliminarCasa(selectedCasaId);
     }
     setDeleteDialogOpen(false);
     setSelectedCasaId(null);
@@ -66,9 +66,7 @@ const AdminPage = () => {
 
   return (
     <Box>
-      <Typography variant="h4" >
-        Administrar Casas de Cambio
-      </Typography>
+      <Typography variant="h4">Administrar Casas de Cambio</Typography>
       <Button
         variant="contained"
         sx={{ marginY: 2 }}
@@ -77,16 +75,12 @@ const AdminPage = () => {
       >
         Agregar Casa de Cambio
       </Button>
-      <ExchangeHouseTable
-        casas={casas}
-        onEdit={handleOpen}
-        onDelete={openDeleteDialog}
-      />
+      <ExchangeHouseTable casas={casas} onEdit={handleOpen} onDelete={openDeleteDialog} />
       <ExchangeHouseForm
         open={open}
         onClose={handleClose}
         onSubmit={handleSubmit}
-
+        
         initialValues={
           editingCasa || {
             name: "",
@@ -96,13 +90,20 @@ const AdminPage = () => {
             sell: 0,
             lat: -16.5,
             lng: -68.15,
-          }}
+            commission: 0,
+            minimumCapital: 0,
+            startTime: "",
+            endTime: "",
+            operatingHours: "",
+          }
+        }
       />
       <Dialog open={deleteDialogOpen} onClose={closeDeleteDialog}>
         <DialogTitle>Confirmar Eliminación</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            ¿Estás seguro de que deseas eliminar esta casa de cambio? Esta acción no se puede deshacer.
+            ¿Estás segura de que deseas eliminar esta casa de cambio? Esta acción no se puede
+            deshacer.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

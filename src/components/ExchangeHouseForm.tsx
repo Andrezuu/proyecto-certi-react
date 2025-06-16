@@ -29,6 +29,22 @@ const exchangeHouseSchema = yup.object({
     .typeError("Debe ser un número válido")
     .min(0, "El valor de venta no puede ser negativo")
     .required("El valor de venta es requerido"),
+    commission: yup
+    .number()
+    .typeError("Debe ser un número válido")
+    .min(0, "La comisión no puede ser negativa")
+    .required("La comisión es requerida"),
+
+  minimumCapital: yup
+    .number()
+    .typeError("Debe ser un número válido")
+    .min(0, "El capital mínimo no puede ser negativo")
+    .required("El capital mínimo es requerido"),
+
+  operatingHours: yup
+    .string()
+    .required("El horario de operación es requerido"),
+
 });
 
 interface ExchangeHouseFormProps {
@@ -65,6 +81,7 @@ const ExchangeHouseForm = ({
         {initialValues.id ? "Editar Casa de Cambio" : "Agregar Casa de Cambio"}
       </DialogTitle>
       <form onSubmit={formik.handleSubmit}>
+        
         <DialogContent>
           <TextField
             fullWidth
@@ -130,6 +147,62 @@ const ExchangeHouseForm = ({
             error={formik.touched.sell && Boolean(formik.errors.sell)}
             helperText={formik.touched.sell && formik.errors.sell}
           />
+          <TextField
+          fullWidth
+          margin="dense"
+          name="commission"
+          label="Comisión (%)"
+          type="number"
+          inputProps={{ min: 0 }}
+          value={formik.values.commission}
+          onChange={formik.handleChange}
+          error={formik.touched.commission && Boolean(formik.errors.commission)}
+          helperText={formik.touched.commission && formik.errors.commission}
+        />
+
+        <TextField
+          fullWidth
+          margin="dense"
+          name="minimumCapital"
+          label="Capital Mínimo"
+          inputProps={{ min: 1 }}
+          type="number"
+          value={formik.values.minimumCapital}
+          onChange={formik.handleChange}
+          error={formik.touched.minimumCapital && Boolean(formik.errors.minimumCapital)}
+          helperText={formik.touched.minimumCapital && formik.errors.minimumCapital}
+        />
+
+        <TextField
+          fullWidth
+          margin="dense"
+          label="Hora de Apertura"
+          type="time"
+          value={formik.values.startTime}
+          onChange={(e) => {
+            const start = e.target.value;
+            const end = formik.values.endTime;
+            formik.setFieldValue("startTime", start);
+            formik.setFieldValue("operatingHours", `${start} - ${end}`);
+          }}
+          InputLabelProps={{ shrink: true }}
+        />
+
+        <TextField
+          fullWidth
+          margin="dense"
+          label="Hora de Cierre"
+          type="time"
+          value={formik.values.endTime}
+          onChange={(e) => {
+            const end = e.target.value;
+            const start = formik.values.startTime;
+            formik.setFieldValue("endTime", end);
+            formik.setFieldValue("operatingHours", `${start} - ${end}`);
+          }}
+          InputLabelProps={{ shrink: true }}
+        />
+
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={onClose} color="info">
